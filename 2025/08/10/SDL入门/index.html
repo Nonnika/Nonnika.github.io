@@ -7,12 +7,12 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口  在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。 如果没有配置请转到环境配置  开发环境：Virtual Studio 2022  基本框架 值得一提的是SDL3与SDL2不同，其舍弃了传统的main函数的入口模式，转而使用四个基本函数来处理程序的生命周期。下面我们来认识一下。  初始化函数 1S">
+<meta name="description" content="我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口  在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。 如果没有配置请转到环境配置  开发环境：Virtual Studio 2022 基本框架 值得一提的是SDL3与SDL2不同，其舍弃了传统的main函数的入口模式，转而使用四个基本函数来处理程序的生命周期。下面我们来认识一下。 初始化函数 1SDL_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SDL入门">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/08/10/SDL%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Liew.Y&#39; blogs">
-<meta property="og:description" content="我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口  在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。 如果没有配置请转到环境配置  开发环境：Virtual Studio 2022  基本框架 值得一提的是SDL3与SDL2不同，其舍弃了传统的main函数的入口模式，转而使用四个基本函数来处理程序的生命周期。下面我们来认识一下。  初始化函数 1S">
+<meta property="og:description" content="我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口  在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。 如果没有配置请转到环境配置  开发环境：Virtual Studio 2022 基本框架 值得一提的是SDL3与SDL2不同，其舍弃了传统的main函数的入口模式，转而使用四个基本函数来处理程序的生命周期。下面我们来认识一下。 初始化函数 1SDL_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-10T15:26:54.000Z">
 <meta property="article:modified_time" content="2025-08-11T16:42:56.000Z">
@@ -377,42 +377,42 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="我的sdl3之旅面向c语言初学者day1认识基本结构和创建窗口"><a class="markdownIt-Anchor" href="#我的sdl3之旅面向c语言初学者day1认识基本结构和创建窗口"></a> 我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口</h1>
+    <h1>我的SDL3之旅（面向C语言初学者）：DAY1认识基本结构和创建窗口</h1>
 <blockquote>
-<p>在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。<br />
+<p>在上一篇文章中我们已经配置好了SDL3环境现在我们可以来写SDL3的代码了。<br>
 如果没有配置请转到<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_55207559/article/details/148028217?spm=1001.2014.3001.5501">环境配置</a></p>
 </blockquote>
 <p><strong>开发环境</strong>：Virtual Studio 2022</p>
-<h2 id="基本框架"><a class="markdownIt-Anchor" href="#基本框架"></a> 基本框架</h2>
+<h2 id="基本框架">基本框架</h2>
 <p>值得一提的是SDL3与SDL2不同，其舍弃了传统的<code>main</code>函数的入口模式，转而使用四个基本函数来处理程序的生命周期。下面我们来认识一下。</p>
-<h3 id="初始化函数"><a class="markdownIt-Anchor" href="#初始化函数"></a> 初始化函数</h3>
+<h3 id="初始化函数">初始化函数</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SDL_AppResult <span class="title function_">SDL_AppInit</span><span class="params">(<span class="type">void</span>** appstate, <span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span><br></pre></td></tr></table></figure>
 <p>这个函数会在程序开始执行时运行一次，如果学过<strong>OOP</strong>的编程语言可以把这个类比成类的<strong>构造函数</strong>其只会执行一次。</p>
-<h4 id="参数解释"><a class="markdownIt-Anchor" href="#参数解释"></a> 参数解释</h4>
+<h4 id="参数解释">参数解释</h4>
 <p><code>void** appstate</code>首先是一个二级指针，其指向的指针是一个结构体指针，其的作用主要是管理程序的相关状态。里面可以管理如**窗口（window）、渲染器（renderer）**一类的状态信息。</p>
 <p><code> int argc, char* argv[]</code>这些是C/C++的传统命令行参数。</p>
-<h3 id="事件响应函数"><a class="markdownIt-Anchor" href="#事件响应函数"></a> 事件响应函数</h3>
+<h3 id="事件响应函数">事件响应函数</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SDL_AppResult <span class="title function_">SDL_AppEvent</span><span class="params">(<span class="type">void</span>* appstate,SDL_Event* event)</span></span><br></pre></td></tr></table></figure>
 <p>这个函数会在有<strong>事件</strong>（如鼠标点击、键盘输入、QUIT退出）时调用。</p>
-<h4 id="参数解释-2"><a class="markdownIt-Anchor" href="#参数解释-2"></a> 参数解释</h4>
-<p><code>void* appstate</code>是一个指针传入APP的状态管理参数<br />
+<h4 id="参数解释-2">参数解释</h4>
+<p><code>void* appstate</code>是一个指针传入APP的状态管理参数<br>
 <code>SDL_Event* event</code> 负责传入APP当前响应的事件</p>
-<h3 id="帧渲染函数主函数"><a class="markdownIt-Anchor" href="#帧渲染函数主函数"></a> 帧渲染函数（主函数）</h3>
+<h3 id="帧渲染函数（主函数）">帧渲染函数（主函数）</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SDL_AppResult <span class="title function_">SDL_AppIterate</span><span class="params">(<span class="type">void</span>* appstate)</span></span><br></pre></td></tr></table></figure>
-<p>这个函数会在每一帧运行一次，有点类似传统的<code>while</code>死循环方法。<br />
+<p>这个函数会在每一帧运行一次，有点类似传统的<code>while</code>死循环方法。<br>
 里面会处理你程序运行时的各种事件，当然也包括图形渲染。</p>
-<h3 id="后处理函数"><a class="markdownIt-Anchor" href="#后处理函数"></a> 后处理函数</h3>
+<h3 id="后处理函数">后处理函数</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">SDL_AppQuit</span><span class="params">(<span class="type">void</span>* appstate,SDL_AppResult result)</span></span><br></pre></td></tr></table></figure>
 <p>这个函数会在程序生命结束时调用，SDL会帮我们清理渲染和屏幕。同样的学过<strong>OOP</strong>编程语言的可以拿<strong>析构函数类比</strong></p>
-<h4 id="参数解释-3"><a class="markdownIt-Anchor" href="#参数解释-3"></a> 参数解释</h4>
+<h4 id="参数解释-3">参数解释</h4>
 <p><code>SDL_AppResult result</code>这个会传入程序的运行结构，如<code>SUCCESS</code>或者<code>FALIURE</code></p>
-<h2 id="创建窗口"><a class="markdownIt-Anchor" href="#创建窗口"></a> 创建窗口</h2>
-<h3 id="前置条件"><a class="markdownIt-Anchor" href="#前置条件"></a> 前置条件</h3>
+<h2 id="创建窗口">创建窗口</h2>
+<h3 id="前置条件">前置条件</h3>
 <ul>
 <li>安装了SDL3环境</li>
 <li>具备基本的C/C++知识</li>
 </ul>
-<h3 id="知识补充"><a class="markdownIt-Anchor" href="#知识补充"></a> 知识补充</h3>
+<h3 id="知识补充">知识补充</h3>
 <ul>
 <li><strong>屏幕坐标系</strong></li>
 </ul>
@@ -425,17 +425,17 @@
 <blockquote>
 <p>我们看到的视频实际上有由一系列连续的图像形成的，我们把每一张图像叫做帧（fame）</p>
 </blockquote>
-<h3 id="书写代码"><a class="markdownIt-Anchor" href="#书写代码"></a> 书写代码</h3>
+<h3 id="书写代码">书写代码</h3>
 <p>首先定义宏来启用新式写法</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SDL_MAIN_USE_CALLBACKS 1</span></span><br></pre></td></tr></table></figure>
 <p>现在引入头文件</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;SDL3/SDL.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;SDL3/SDL_main.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>创建窗口也遵循传统的 ‘声明-初始-使用’ 的基本形式。<br />
+<p>创建窗口也遵循传统的 '声明-初始-使用' 的基本形式。<br>
 现在定义两个全局变量</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> SDL_Window* window = <span class="literal">NULL</span>;</span><br><span class="line"><span class="type">static</span> SDL_Renderer* renderer = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
 <p>现在我们可以开始写第一个函数了</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SDL_AppResult <span class="title function_">SDL_AppInit</span><span class="params">(<span class="type">void</span>** appstate, <span class="type">int</span> argc, <span class="type">char</span>* agrv[])</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>首先我们需要调用<br />
+<p>首先我们需要调用<br>
 <code>SDL_SetAppMetadata( )</code>函数来初始化程序的名称等。</p>
 <blockquote>
 <p><code>SDL_SetAppMetadata</code>拥有三个参数（程序名称，版本信息，标识符）用于设置APP的元数据</p>
@@ -445,8 +445,8 @@
 <p>下面来初始化窗口和渲染器</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!SDL_Init(SDL_INIT_VIDEO)) &#123;</span><br><span class="line">		SDL_Log(<span class="string">&quot;Couldn&#x27;t initialize SDL :%s&quot;</span>, SDL_GetError());</span><br><span class="line">		<span class="keyword">return</span> SDL_APP_FAILURE;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">/*此处Windowsflag参数被设置为0 表示默认设置*/</span></span><br><span class="line">	<span class="keyword">if</span> (!SDL_CreateWindowAndRenderer(<span class="string">&quot;examples/renderer/clear&quot;</span>, <span class="number">640</span>, <span class="number">480</span>, <span class="number">0</span>,&amp;window ,&amp;renderer)) &#123;</span><br><span class="line">		SDL_Log(<span class="string">&quot;Couldn&#x27;t create window/renderer %s&quot;</span>, SDL_GetError());</span><br><span class="line">		<span class="keyword">return</span> SDL_APP_FAILURE;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>这里使用了<code>SDL_Init()</code>和<code>SDL_CreateWindowAndRenderer()</code>其实我们可以顾名思义一个是用来初始化权限的一个是用来创建窗口和渲染器的。<br />
-<code>SDL_GetError()</code>会返回字符串内容是错误信息。<br />
+<p>这里使用了<code>SDL_Init()</code>和<code>SDL_CreateWindowAndRenderer()</code>其实我们可以顾名思义一个是用来初始化权限的一个是用来创建窗口和渲染器的。<br>
+<code>SDL_GetError()</code>会返回字符串内容是错误信息。<br>
 <code>SDL_Log()</code>是SDL内置的日志打印函数。</p>
 </blockquote>
 <p>这里需要提一下<code>SDL_Init()</code>函数是使用<code>|</code>与运算符来申请多个权限的比如</p>
@@ -460,11 +460,11 @@
 <p>现在解释一下<code>SDL_SetRenderDrawColorFloat()</code>函数其接受渲染器和颜色（RGB）来设置渲染器颜色。<code>SDL_ALPHA_OPAQUE_FLOAT</code>是一个官方宏，表示不透明且是浮点型的参数。</p>
 <p>最后结尾</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">SDL_AppQuit</span><span class="params">(<span class="type">void</span>* appstate,SDL_AppResult result)</span> &#123;</span><br><span class="line">	<span class="comment">/*pass*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="写在后面"><a class="markdownIt-Anchor" href="#写在后面"></a> 写在后面</h2>
-<h3 id="qa"><a class="markdownIt-Anchor" href="#qa"></a> Q&amp;A</h3>
+<h2 id="写在后面">写在后面</h2>
+<h3 id="Q-A">Q&amp;A</h3>
 <p><strong>为什么第一个<code>SDL_AppResult SDL_AppInit(void** appstate, int argc, char* agrv[])</code>的<code>appstate</code>参数是二级指针？</strong></p>
 <blockquote>
-<p>因为这个函数是初始化函数，其目的是为了储存开发创建的<strong>状态对象</strong><br />
+<p>因为这个函数是初始化函数，其目的是为了储存开发创建的<strong>状态对象</strong><br>
 其他函数只会修改这个对象的内容而不是这个对象所以是一级指针</p>
 </blockquote>
 <p><strong>为什么没有使用<code>appstate</code>参数？</strong></p>
@@ -473,11 +473,11 @@
 </blockquote>
 <p><strong>你说话好啰嗦啊？</strong></p>
 <blockquote>
-<p>你真是个小天才（开玩笑）<br />
+<p>你真是个小天才（开玩笑）<br>
 其实主要面向的是刚学完C语言（不严谨就是会一点）的想图形化的同学写的。</p>
 </blockquote>
-<h3 id="感受"><a class="markdownIt-Anchor" href="#感受"></a> 感受</h3>
-<p>本人技术也不是很好，但还是想说两句。<br />
+<h3 id="感受">感受</h3>
+<p>本人技术也不是很好，但还是想说两句。<br>
 学习这个SDL3其实最好的教程已经放在官方的Demo里面了，所以剩下的就是啃接口文档了。</p>
 <p><em><strong>如有不妥，敬请指教</strong></em></p>
 

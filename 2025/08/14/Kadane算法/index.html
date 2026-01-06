@@ -7,12 +7,12 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i]">
+<meta name="description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i],">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kadane算法">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/08/14/Kadane%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Liew.Y&#39; blogs">
-<meta property="og:description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i]">
+<meta property="og:description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i],">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-14T10:37:00.000Z">
 <meta property="article:modified_time" content="2025-08-16T14:59:24.000Z">
@@ -378,29 +378,29 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h2 id="kadane算法最大子数组和问题"><a class="markdownIt-Anchor" href="#kadane算法最大子数组和问题"></a> Kadane算法——最大子数组和问题</h2>
-<p>问题定义<br />
-给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。<br />
-子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。<br />
-Kadane算法的核心思想<br />
-Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。<br />
-核心状态转移方程：<br />
+    <h2 id="Kadane算法——最大子数组和问题">Kadane算法——最大子数组和问题</h2>
+<p>问题定义<br>
+给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。<br>
+子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。<br>
+Kadane算法的核心思想<br>
+Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。<br>
+核心状态转移方程：<br>
 dp[i] = max(nums[i], dp[i-1] + nums[i])</p>
 <p>其中 dp[i] 表示以第i个元素结尾的最大子数组和。</p>
-<h3 id="算法步骤"><a class="markdownIt-Anchor" href="#算法步骤"></a> 算法步骤：</h3>
+<h3 id="算法步骤：">算法步骤：</h3>
 <ol>
 <li>维护两个变量：current_max（当前最大值）和 global_max（全局最大值）</li>
 <li>从第二个元素开始遍历数组</li>
 <li>对于每个元素，选择较大值：要么单独成为新的子数组开始，要么加入前面的子数组</li>
 <li>更新全局最大值</li>
 </ol>
-<h3 id="算法示例"><a class="markdownIt-Anchor" href="#算法示例"></a> 算法示例</h3>
-<p>以数组 [5, -3, 2, -1, 4] 为例：<br />
+<h3 id="算法示例">算法示例</h3>
+<p>以数组 [5, -3, 2, -1, 4] 为例：<br>
 初始：current_max = 5, global_max = 5</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">i=<span class="number">1</span>, nums[<span class="number">1</span>]=<span class="number">-3</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">-3</span>, <span class="number">5</span>+(<span class="number">-3</span>)) = <span class="built_in">max</span>(<span class="number">-3</span>, <span class="number">2</span>) = <span class="number">2</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">2</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">2</span>, nums[<span class="number">2</span>]=<span class="number">2</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">2</span><span class="number">+2</span>) = <span class="number">4</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">4</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">3</span>, nums[<span class="number">3</span>]=<span class="number">-1</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">-1</span>, <span class="number">4</span>+(<span class="number">-1</span>)) = <span class="number">3</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">3</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">4</span>, nums[<span class="number">4</span>]=<span class="number">4</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">4</span>, <span class="number">3</span><span class="number">+4</span>) = <span class="number">7</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">7</span>) = <span class="number">7</span></span><br></pre></td></tr></table></figure>
 <p>最终答案：7，对应子数组 [2, -1, 4]</p>
-<h3 id="为什么这样做是对的"><a class="markdownIt-Anchor" href="#为什么这样做是对的"></a> 为什么这样做是对的？</h3>
-<p>当 current_max + nums[i] &lt; nums[i] 时，说明前面的子数组对当前元素产生了&quot;负贡献&quot;，此时应该抛弃前面的结果，从当前元素重新开始。这样保证了每一步都选择局部最优解，最终得到全局最优解。<br />
+<h3 id="为什么这样做是对的？">为什么这样做是对的？</h3>
+<p>当 current_max + nums[i] &lt; nums[i] 时，说明前面的子数组对当前元素产生了&quot;负贡献&quot;，此时应该抛弃前面的结果，从当前元素重新开始。这样保证了每一步都选择局部最优解，最终得到全局最优解。<br>
 完整代码实现</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> max_sum;</span><br><span class="line">    <span class="type">int</span> start;</span><br><span class="line">    <span class="type">int</span> end;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Result <span class="title">kadane</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>, <span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> current_max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> global_max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>, temp_start = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; current_max + nums[i]) &#123;</span><br><span class="line">            current_max = nums[i];</span><br><span class="line">            temp_start = i;  <span class="comment">// 新的候选起点</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current_max += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (current_max &gt; global_max) &#123;</span><br><span class="line">            global_max = current_max;</span><br><span class="line">            start = temp_start;</span><br><span class="line">            end = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;global_max, start, end&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nums</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    Result result = <span class="built_in">kadane</span>(nums);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;最大子数组和: &quot;</span> &lt;&lt; result.max_sum &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;子数组范围: [&quot;</span> &lt;&lt; result.start &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; result.end &lt;&lt; <span class="string">&quot;]&quot;</span> &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>复杂度分析</p>
@@ -414,13 +414,13 @@ dp[i] = max(nums[i], dp[i-1] + nums[i])</p>
 <li>空数组：根据题目要求返回0或报错</li>
 <li>数据范围大：使用 long long 防止溢出</li>
 </ol>
-<h2 id="推荐练习题"><a class="markdownIt-Anchor" href="#推荐练习题"></a> 推荐练习题</h2>
+<h2 id="推荐练习题">推荐练习题</h2>
 <ul>
 <li>LeetCode 53: Maximum Subarray</li>
 <li>LeetCode 918: Maximum Sum Circular Subarray</li>
 <li>杭电OJ 1003: Max Sum</li>
 </ul>
-<h2 id="算法扩展"><a class="markdownIt-Anchor" href="#算法扩展"></a> 算法扩展</h2>
+<h2 id="算法扩展">算法扩展</h2>
 <ul>
 <li>二维数组的最大子矩阵和</li>
 <li>环形数组的最大子数组和</li>
