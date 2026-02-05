@@ -1,673 +1,186 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="x5-fullscreen" content="true">
-<meta name="full-screen" content="yes">
-<meta name="theme-color" content="#317EFB" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Author：Liew.Y Date: 2025-03-26 16:35（完成时间） Github Profile: LiewYoung   欢迎来到我的Github，目前只有一些简单的脚本项目。 欢迎与我共同进步😶‍🌫️  编程相关 🤷‍♂️IO WIKI OI Wiki - OI Wiki 介绍： 一个ACM算法比赛爱好者的集合网站 🚀菜鸟教程菜鸟教程 - 学的不仅是技术，更是梦想！">
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>资源整理 - Nonnika&#39;s Blog</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="Author：Liew.Y Date: 2025-03-26 16:35（完成时间） Github Profile: LiewYoung   欢迎来到我的Github，目前只有一些简单的脚本项目。 欢迎与我共同进步😶‍🌫️   编程相关 🤷‍♂️IO WIKI OI Wiki - OI Wiki 介绍： 一个ACM算法比赛爱好者的集合网站 🚀菜鸟教程菜鸟教程 - 学的不仅是技术，更是梦想！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="资源整理">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/08/10/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86/index.html">
-<meta property="og:site_name" content="Liew.Y&#39; blogs">
-<meta property="og:description" content="Author：Liew.Y Date: 2025-03-26 16:35（完成时间） Github Profile: LiewYoung   欢迎来到我的Github，目前只有一些简单的脚本项目。 欢迎与我共同进步😶‍🌫️  编程相关 🤷‍♂️IO WIKI OI Wiki - OI Wiki 介绍： 一个ACM算法比赛爱好者的集合网站 🚀菜鸟教程菜鸟教程 - 学的不仅是技术，更是梦想！">
+<meta property="og:site_name" content="Nonnika&#39;s Blog">
+<meta property="og:description" content="Author：Liew.Y Date: 2025-03-26 16:35（完成时间） Github Profile: LiewYoung   欢迎来到我的Github，目前只有一些简单的脚本项目。 欢迎与我共同进步😶‍🌫️   编程相关 🤷‍♂️IO WIKI OI Wiki - OI Wiki 介绍： 一个ACM算法比赛爱好者的集合网站 🚀菜鸟教程菜鸟教程 - 学的不仅是技术，更是梦想！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-10T15:05:17.000Z">
-<meta property="article:modified_time" content="2025-08-11T16:42:36.000Z">
-<meta property="article:author" content="LiewYoung">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="资源整理">
 <meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="https://blog.liewyoung.top/2025/08/10/资源整理/">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
 
-    <meta name="keywords" content="LiewYoung">
+  
+<link rel="stylesheet" href="/css/style.css">
 
+  
+<link rel="stylesheet" href="/css/markdown.css">
 
-<title >资源整理</title>
+  
+<link rel="stylesheet" href="/css/fonts.css">
 
-<!-- Favicon -->
+  
+<link rel="stylesheet" href="/css/github.css">
 
-    <link href='/logo/AlphaOne.png?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
-
-
-    <link href='/logo/AlphaOne.png?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
-
-
-
-
-<!-- Plugin -->
-
-
-
-
-    
-<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
-
-    
-<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
-
-    
-    
-
-
-
-
-<!-- Icon -->
-
-    
-<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
-
-
-
-
-<!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"blog.liewyoung.top","author":"LiewYoung","root":"/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/logo/AlphaOne.png","icon16":"/logo/AlphaOne.png","icon32":"/logo/AlphaOne.png","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！","dark_logo":"/logo/AlphaOne_dark.png"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-12 00:42:36"};</script>
-
-<!-- Theme mode css -->
-<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
-<script>
-    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
-    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
-    let type = catchMode === 'style-dark' ? 'add' : 'remove';
-    document.documentElement.classList[type]('dark')
-</script>
-
-<!-- CDN -->
-
-
-    
-    
-
-
-
-<!-- Site Analytics -->
-
- 
 <meta name="generator" content="Hexo 7.3.0"></head>
 
-<body>
-
-  <!-- app wrapper -->
-  <div class="trm-app-frame">
-
-    <!-- page preloader -->
-    <div class="trm-preloader">
-    <div class="trm-holder">
-        <div class="preloader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-</div>
-    <!-- page preloader end -->
-
-    <!-- change mode preloader -->
-    <div class="trm-mode-swich-animation-frame">
-    <div class="trm-mode-swich-animation">
-        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
-        <div class="trm-horizon"></div>
-        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
-    </div>
-</div>
-    <!-- change mode preloader end -->
-
-      <!-- scroll container -->
-      <div id="trm-dynamic-content" class="trm-swup-animation">
-        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
-            <!-- top bar -->
-            <header class="trm-top-bar">
-	<div class="container">
-		<div class="trm-left-side">
-			<!-- logo -->
-<a href="/" class="trm-logo-frame trm-anima-link">
-    
-        <img alt="logo" class=" trm-light-icon" src="/logo/AlphaOne.png"> <img alt="logo" class=" trm-dark-icon" src="/logo/AlphaOne_dark.png">
-    
-    
-        <div class="trm-logo-text">
-            Liew<span>Young</span>
-        </div>
-    
-</a>
-<!-- logo end -->
-		</div>
-		<div class="trm-right-side">
-			<!-- menu -->
-<div class="trm-menu">
-    <nav>
-        <ul>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Nonnika&#39;s Blog</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
             
-            <li class="menu-item-has-children ">
-                <a  href="/" target="">
-                    主页
-                </a>
-                
-            </li>
+            <li><a href="/">Home</a></li>
             
-            <li class="menu-item-has-children ">
-                <a  href="/archives/" target="">
-                    归档
-                </a>
-                
-                <ul>
-                    
-                    <li>
-                        <a  href="/tags/" target="">
-                            标签
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a  href="/categories/" target="">
-                            分类
-                        </a>
-                    </li>
-                    
-                </ul>
-                
-            </li>
+            <li><a href="/about">About</a></li>
             
-            <li class="menu-item-has-children ">
-                <a  href="/gallery" target="">
-                    相册集
-                </a>
-                
-            </li>
-            
-            <li class="menu-item-has-children ">
-                <a data-no-swup href="/about/" target="">
-                    关于
-                </a>
-                
-            </li>
+            <li><a href="/archives">Archives</a></li>
             
         </ul>
-    </nav>
+
+
+    </a>
 </div>
-<!-- menu end -->
-			
-    <!-- mode switcher place -->
-    <div class="trm-mode-switcher-place">
-        <div class="trm-mode-switcher">
-            <i class="iconfont far fa-sun"></i>
-            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
-            <label class="trm-swich" for="trm-swich"></label>
-            <i class="iconfont far fa-moon"></i>
-        </div>
-    </div>
-    <!-- mode switcher place end -->
 
-			
-    
-    <div id="trm-search-btn" class="trm-search-btn">
-        <i class="iconfont fas fa-search"></i>
-    </div>
-     
-
-		</div>
-		<div class="trm-menu-btn">
-			<span></span>
-		</div>
-	</div>
-</header>
-            <!-- top bar end -->
-
-            <!-- body -->
-            
-<div class="trm-content-start">
-    <!-- banner -->
-    <div class="trm-banner">
-    
-    <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="https://pic1.imgdb.cn/item/689a1d6f58cb8da5c81b0bdb.png">
-    <!-- banner cover end -->
-    
-
-    <!-- banner content -->
-    <div class="trm-banner-content trm-overlay">
-        <div class="container">
-            <div class="row">
                 
-                <div class="col-lg-4"></div>
-                
-                <div class="col-lg-8">
-
-                    <!-- banner title -->
-                    <div class="trm-banner-text ">
-                        <div class="trm-label trm-mb-20">
-                            All for one,one for all.
-                        </div>
-                        <h1 class="trm-mb-30 trm-hsmb-font">
-                            资源整理
-                        </h1>
-
-                        
-                            <ul class="trm-breadcrumbs trm-label">
-                                <li>
-                                    <a href="/" class="trm-anima-link">Home</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        2025
-                                    </span>
-                                </li>
-                            </ul>
-                        
-                    </div>
-                    <!-- banner title end -->
-
-                    <!-- scroll hint -->
-                    <span id="scroll-triger" class="trm-scroll-hint-frame">
-                        <div class="trm-scroll-hint"></div>
-                        <span class="trm-label">Scroll down</span>
-                    </span>
-                    <!-- scroll hint end -->
-
-                </div>
-            </div>
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            资源整理
         </div>
-    </div>
-    <!-- banner content end -->
-</div>
-    <!-- banner end -->
-    <div class="container">
-        <div class="row">
+        <div class="post-meta">
+            2025-08-10 ｜ 
             
-                <div class="trm-page-sidebar col-lg-4 hidden-sm">
-                    <!-- main card -->
-                    <div class="trm-main-card-frame trm-sidebar">
-    <div class="trm-main-card"> 
-        <!-- card header -->
-<div class="trm-mc-header">
-    <div class="trm-avatar-frame trm-mb-20">
-        <img alt="Avatar" class="trm-avatar" src="/img/san.jpg">
-    </div>
-    <h5 class="trm-name trm-mb-15">
-        Nonnika.Y
-    </h5>
-    
-</div>
-<!-- card header end -->
-        <!-- sidebar social -->
-
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<div class="trm-social">
-    
-        <a href="https://github.com/Nonnika" title="github" rel="nofollow" target="_blank">
-            <i class="iconfont fab fa-github"></i>
-        </a>
-    
-        <a href="mailto:liewyoung@liewyoung.top" title="邮箱" rel="nofollow" target="_blank">
-            <i class="iconfont far fa-envelope"></i>
-        </a>
-    
-</div>
-
-<!-- sidebar social end -->
-        <!-- info -->
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<ul class="trm-table trm-mb-20">
-    
-        <li>
-            <div class="trm-label">
-                地址:
-            </div>
-            <div class="trm-label trm-label-light">
-                0001星球
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                年龄:
-            </div>
-            <div class="trm-label trm-label-light">
-                20
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                CSDN:
-            </div>
-            <div class="trm-label trm-label-light">
-                @Beyond Aurora
-            </div>
-        </li>
-    
-</ul>
-<!-- info end -->
-
-        
-    </div>
-</div>
-                    <!-- main card end -->
-                </div>
+                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"># 计算机基础</a>
             
-            <div class="trm-page-content col-lg-8">
-                <div id="trm-content" class="trm-content">
-                    <div class="trm-post-info row hidden-sm">
-    <div class="col-sm-4">
-        <div class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
-            08/10
         </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-clock trm-icon"></i><br>
-            23:05
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-user trm-icon"></i><br>
-            LiewYoung
-        </div>
-    </div>
-</div>
-<div class="trm-card ">
-    <article id="article-container" class="trm-publication">
-    <p><strong>Author</strong>：Liew.Y<br>
-<strong>Date</strong>: 2025-03-26 16:35（完成时间）<br>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Author</strong>：Liew.Y<br />
+<strong>Date</strong>: 2025-03-26 16:35（完成时间）<br />
 <strong>Github Profile</strong>: <a target="_blank" rel="noopener" href="https://github.com/LiewYoung">LiewYoung </a></p>
 <blockquote>
-<p>欢迎来到我的Github，目前只有一些简单的脚本项目。<br>
+<p>欢迎来到我的Github，目前只有一些简单的脚本项目。<br />
 欢迎与我共同进步😶‍🌫️</p>
 </blockquote>
-<h1>编程相关</h1>
-<p>🤷‍♂️IO WIKI <a target="_blank" rel="noopener" href="https://oi-wiki.org/">OI Wiki - OI Wiki</a><br>
-<strong>介绍</strong>：<br>
+<h1 id="编程相关"><a class="markdownIt-Anchor" href="#编程相关"></a> 编程相关</h1>
+<p>🤷‍♂️IO WIKI <a target="_blank" rel="noopener" href="https://oi-wiki.org/">OI Wiki - OI Wiki</a><br />
+<strong>介绍</strong>：<br />
 一个ACM算法比赛爱好者的集合网站</p>
-<p>🚀菜鸟教程<a target="_blank" rel="noopener" href="https://www.runoob.com/">菜鸟教程 - 学的不仅是技术，更是梦想！</a><br>
-<strong>介绍</strong>：<br>
+<p>🚀菜鸟教程<a target="_blank" rel="noopener" href="https://www.runoob.com/">菜鸟教程 - 学的不仅是技术，更是梦想！</a><br />
+<strong>介绍</strong>：<br />
 一个编程学习网站</p>
-<h1>万恶PPT</h1>
-<p>🫡第一PPT<a target="_blank" rel="noopener" href="https://www.1ppt.com/">PPT模板_PPT模版免费下载_免费PPT模板下载 -【第一PPT】</a><br>
-<strong>介绍</strong>：<br>
+<h1 id="万恶ppt"><a class="markdownIt-Anchor" href="#万恶ppt"></a> 万恶PPT</h1>
+<p>🫡第一PPT<a target="_blank" rel="noopener" href="https://www.1ppt.com/">PPT模板_PPT模版免费下载_免费PPT模板下载 -【第一PPT】</a><br />
+<strong>介绍</strong>：<br />
 这个网站或许不够出彩但一定好用</p>
-<p>👍优品PPT<a target="_blank" rel="noopener" href="https://www.ypppt.com/sucai/renwu/">PPT人物素材_PPT人物插图_PPT人物图片 - 优品PPT</a><br>
-<strong>介绍</strong>:<br>
+<p>👍优品PPT<a target="_blank" rel="noopener" href="https://www.ypppt.com/sucai/renwu/">PPT人物素材_PPT人物插图_PPT人物图片 - 优品PPT</a><br />
+<strong>介绍</strong>:<br />
 经过我检验的PPT素材获取平台</p>
-<p>🐉字行天下<a target="_blank" rel="noopener" href="https://www.fonts.net.cn/">字体天下-提供各类字体的免费下载和在线预览服务</a><br>
-<strong>介绍</strong>：<br>
+<p>🐉字行天下<a target="_blank" rel="noopener" href="https://www.fonts.net.cn/">字体天下-提供各类字体的免费下载和在线预览服务</a><br />
+<strong>介绍</strong>：<br />
 免费字体下载，装饰你的PPT</p>
-<h1>AI工具</h1>
+<h1 id="ai工具"><a class="markdownIt-Anchor" href="#ai工具"></a> AI工具</h1>
 <blockquote>
 <p>这是我最喜欢的部分，哈哈。</p>
 </blockquote>
-<p>🚀KIMI<a target="_blank" rel="noopener" href="https://kimi.moonshot.cn/">Kimi - 会推理解析，能深度思考的AI助手</a><br>
-<strong>介绍</strong>：<br>
+<p>🚀KIMI<a target="_blank" rel="noopener" href="https://kimi.moonshot.cn/">Kimi - 会推理解析，能深度思考的AI助手</a><br />
+<strong>介绍</strong>：<br />
 推荐的原因很简单，谁让他可以一键生成PPT呢</p>
-<p>💻Tera<a target="_blank" rel="noopener" href="https://www.trae.com.cn/download">Trae - AI 原生 IDE</a><br>
-<strong>介绍</strong>：<br>
+<p>💻Tera<a target="_blank" rel="noopener" href="https://www.trae.com.cn/download">Trae - AI 原生 IDE</a><br />
+<strong>介绍</strong>：<br />
 基于AI构建的IDE，不过基础不牢可不要依赖</p>
-<p>🚀百度文心一言<a target="_blank" rel="noopener" href="https://yiyan.baidu.com/">文心一言</a><br>
-<strong>介绍</strong>：<br>
+<p>🚀百度文心一言<a target="_blank" rel="noopener" href="https://yiyan.baidu.com/">文心一言</a><br />
+<strong>介绍</strong>：<br />
 说到百度大家可能好感骤减，但不得不说自从文心一言完全免费之后百度是真香啊，毕竟国内唯一一个有代码执行器的AI</p>
-<h1>社区类</h1>
-<p>💻Linux Do<a target="_blank" rel="noopener" href="https://linux.do/">LINUX DO - 新的理想型社区</a><br>
-<strong>介绍</strong>：<br>
+<h1 id="社区类"><a class="markdownIt-Anchor" href="#社区类"></a> 社区类</h1>
+<p>💻Linux Do<a target="_blank" rel="noopener" href="https://linux.do/">LINUX DO - 新的理想型社区</a><br />
+<strong>介绍</strong>：<br />
 伟大理想主义者的联盟，在这里只有温和的技术交流没有抖音中的阴阳怪气</p>
-<h1>工具类</h1>
-<p>🎵音乐搜索<a target="_blank" rel="noopener" href="http://www.xmsj.org/">音乐搜索器 - 多站合一音乐搜索,音乐在线试听</a><br>
-<strong>介绍</strong>：<br>
+<h1 id="工具类"><a class="markdownIt-Anchor" href="#工具类"></a> 工具类</h1>
+<p>🎵音乐搜索<a target="_blank" rel="noopener" href="http://www.xmsj.org/">音乐搜索器 - 多站合一音乐搜索,音乐在线试听</a><br />
+<strong>介绍</strong>：<br />
 作为一名资深本地音乐玩家，没有什么比找音乐资源更困难了</p>
-<p>🌍FreeMind<a target="_blank" rel="noopener" href="https://apps.microsoft.com/detail/9NJ0R2C43F8D?hl=neutral&amp;gl=CN&amp;ocid=pdpshare">FreeMind-Make your mind free</a><br>
-<strong>介绍</strong>：<br>
+<p>🌍FreeMind<a target="_blank" rel="noopener" href="https://apps.microsoft.com/detail/9NJ0R2C43F8D?hl=neutral&amp;gl=CN&amp;ocid=pdpshare">FreeMind-Make your mind free</a><br />
+<strong>介绍</strong>：<br />
 开源免费的思维导图软件就是有点丑</p>
-<p>🔍Obsidian<a target="_blank" rel="noopener" href="https://obsidian.md/">Obsidian - Sharpen your thinking</a><br>
-<strong>介绍</strong>：<br>
+<p>🔍Obsidian<a target="_blank" rel="noopener" href="https://obsidian.md/">Obsidian - Sharpen your thinking</a><br />
+<strong>介绍</strong>：<br />
 强大的双链接MarkDown笔记软件，唯一缺点就是云同步不过我就一台电脑要什么自行车</p>
-<p>➕GeGebra<a target="_blank" rel="noopener" href="https://www.geogebra.org/?lang=zh-CN">GeoGebra - the world’s favorite, free math tools used by over 100 million students and teachers</a><br>
-<strong>介绍</strong>：<br>
+<p>➕GeGebra<a target="_blank" rel="noopener" href="https://www.geogebra.org/?lang=zh-CN">GeoGebra - the world’s favorite, free math tools used by over 100 million students and teachers</a><br />
+<strong>介绍</strong>：<br />
 免费强大、风靡全球的的数学工具</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+    
+<!-- tags -->
 
-</article>
-    
-    
-
-</div>
-<div class="trm-post-next-prev row">
-    <div class="col-lg-12">
-        <!-- title -->
-        <h5 class="trm-title-with-divider">
-            其他文章
-            <span data-number="02"></span>
-        </h5>
-    </div>
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2025/08/10/SDL%E5%85%A5%E9%97%A8/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="https://pic1.imgdb.cn/item/689a1d8658cb8da5c81b0beb.png">
-            
-        </a>
+    <div class="post-meta">
+        标签：
         
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93/">
-                    第三方库
-                </a>
-            </div>
-            <h5>
-                <a href="/2025/08/10/SDL%E5%85%A5%E9%97%A8/" class="trm-anima-link">
-                    SDL入门
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/10</li>
-                <li>23:26</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2025/08/10/%E8%A1%A5%E7%A0%81/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="https://pic1.imgdb.cn/item/689a1d3158cb8da5c81b0bc3.png">
-            
-        </a>
+            <a href="/tags/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86/"> / 资源整理</a>
         
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
-                    计算机基础
-                </a>
-            </div>
-            <h5>
-                <a href="/2025/08/10/%E8%A1%A5%E7%A0%81/" class="trm-anima-link">
-                    补码
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/10</li>
-                <li>10:30</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-</div>
-
-    
-
-
-
-                    <div class="trm-divider footer-divider"></div>
-
-                    <!-- footer -->
-                    <footer class="trm-footer-card trm-scroll-animation">
-
-    
-
-    
-
-    
-        <div class="trm-footer-item">
-            <span>
-                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
-            </span>
-            <span class="footer-separator" data-separator=" | "></span>
-            <span> 
-                主题 - 
-                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
-                v2.2.6
-            </span>
-        </div>
-      
-
-     
-
-     
-</footer>
-                    <!-- footer end -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            <!-- body end -->
-
-            
-
-            
-<div class="trm-fixed-container">
-    
-    
-        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
-            <i class="iconfont fas fa-book-reader"></i>
-        </div>
-    
-    
-        <div class="trm-fixed-btn hidden-md" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
-            <i class="iconfont fas fa-arrows-alt-h"></i>
-        </div>
-    
-    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
-        <i class="iconfont fas fa-arrow-up"></i>
-    </div>
-</div>
-        </div>
-      </div>
-      <!-- scroll container end -->
-  </div>
-  <!-- app wrapper end -->
-
-  
-    <div class="trm-search-popup">
-        <div class="trm-search-wrapper">
-            <div class="form trm-search-form">
-                <div class="trm-search-input-icon">
-                    <i class="iconfont fas fa-search"></i>
-                </div>
-                <input class="trm-search-input" type="text" placeholder="搜索文章...">
-                <div class="trm-search-btn-close">
-                    <i class="iconfont fas fa-times"></i>
-                </div>
-            </div>
-            <div class="trm-search-result-container">
-                <div class="trm-search-empty">
-                    请输入关键词进行搜索
-                </div>
-            </div>
-            <div class="trm-search-footer">
-                <div class="trm-search-stats"></div>
-                <ul class="trm-search-commands">
-                    <li>
-                        <kbd class="command-palette-commands-key">
-                            <svg width="15" height="15" aria-label="Escape key" role="img">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="1.2">
-                                    <path
-                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
-                                    </path>
-                                </g>
-                            </svg>
-                        </kbd>
-                        <span class="command-palette-Label">to close</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
 
-  <!-- Plugin -->
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
+    <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/github.css">
 
 
+<script src="/js/highlight.min.js"></script>
 
 
-    
-    
-<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<script src="/js/highlightjs-line-numbers.js"></script>
 
-    
+<script>
+    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
+    // hljs.initHighlightingOnLoad();
+    // hljs.initLineNumbersOnLoad();
+</script>
 
-    
-
-    
-        
-<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
-
-        <script src="/js/plugins/local_search.js?v=2.2.6"></script>
-    
-
-    <!-- 数学公式 -->
-    
-
-    <!-- 评论插件 -->
-    
-        
-
-        
-    
-
-		
-
-
-
-
-    <!-- Service Worker -->
-    
-    <!-- baidu push -->
-    
-
-
-<script id="async-script" src="/js/main.js?v=2.2.6"></script>
-
-<!-- CDN -->
-
-
-    
-
-    
-
-    
-
-
-
-</body>
-
+            </div>
+        </div>
+    </body>
 </html>

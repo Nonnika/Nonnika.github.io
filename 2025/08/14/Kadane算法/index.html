@@ -1,408 +1,120 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="x5-fullscreen" content="true">
-<meta name="full-screen" content="yes">
-<meta name="theme-color" content="#317EFB" />
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i],">
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>Kadane算法 - Nonnika&#39;s Blog</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kadane算法">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/08/14/Kadane%E7%AE%97%E6%B3%95/index.html">
-<meta property="og:site_name" content="Liew.Y&#39; blogs">
-<meta property="og:description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i],">
+<meta property="og:site_name" content="Nonnika&#39;s Blog">
+<meta property="og:description" content="Kadane算法——最大子数组和问题 问题定义 给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。 子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。 Kadane算法的核心思想 Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。 核心状态转移方程： dp[i] &#x3D; max(nums[i]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-14T10:37:00.000Z">
-<meta property="article:modified_time" content="2025-08-16T14:59:24.000Z">
-<meta property="article:author" content="LiewYoung">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="https://blog.liewyoung.top/2025/08/14/Kadane算法/">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
 
-    <meta name="keywords" content="LiewYoung">
+  
+<link rel="stylesheet" href="/css/style.css">
 
+  
+<link rel="stylesheet" href="/css/markdown.css">
 
-<title >Kadane算法</title>
+  
+<link rel="stylesheet" href="/css/fonts.css">
 
-<!-- Favicon -->
+  
+<link rel="stylesheet" href="/css/github.css">
 
-    <link href='/logo/AlphaOne.png?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
-
-
-    <link href='/logo/AlphaOne.png?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
-
-
-
-
-<!-- Plugin -->
-
-
-
-
-    
-<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
-
-    
-<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
-
-    
-    
-
-
-
-
-<!-- Icon -->
-
-    
-<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
-
-
-
-
-<!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"blog.liewyoung.top","author":"LiewYoung","root":"/","typed_text":null,"theme_version":"2.2.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/logo/AlphaOne.png","icon16":"/logo/AlphaOne.png","icon32":"/logo/AlphaOne.png","apple_touch_icon":null,"webmanifest":null,"visibilitychange":true,"hidden":"/failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！","dark_logo":"/logo/AlphaOne_dark.png"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true},"live_time":{"start_time":"","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-16 22:59:24"};</script>
-
-<!-- Theme mode css -->
-<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
-<script>
-    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
-    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
-    let type = catchMode === 'style-dark' ? 'add' : 'remove';
-    document.documentElement.classList[type]('dark')
-</script>
-
-<!-- CDN -->
-
-
-    
-    
-
-
-
-<!-- Site Analytics -->
-
- 
 <meta name="generator" content="Hexo 7.3.0"></head>
 
-<body>
-
-  <!-- app wrapper -->
-  <div class="trm-app-frame">
-
-    <!-- page preloader -->
-    <div class="trm-preloader">
-    <div class="trm-holder">
-        <div class="preloader">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-</div>
-    <!-- page preloader end -->
-
-    <!-- change mode preloader -->
-    <div class="trm-mode-swich-animation-frame">
-    <div class="trm-mode-swich-animation">
-        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
-        <div class="trm-horizon"></div>
-        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
-    </div>
-</div>
-    <!-- change mode preloader end -->
-
-      <!-- scroll container -->
-      <div id="trm-dynamic-content" class="trm-swup-animation">
-        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
-            <!-- top bar -->
-            <header class="trm-top-bar">
-	<div class="container">
-		<div class="trm-left-side">
-			<!-- logo -->
-<a href="/" class="trm-logo-frame trm-anima-link">
-    
-        <img alt="logo" class=" trm-light-icon" src="/logo/AlphaOne.png"> <img alt="logo" class=" trm-dark-icon" src="/logo/AlphaOne_dark.png">
-    
-    
-        <div class="trm-logo-text">
-            Liew<span>Young</span>
-        </div>
-    
-</a>
-<!-- logo end -->
-		</div>
-		<div class="trm-right-side">
-			<!-- menu -->
-<div class="trm-menu">
-    <nav>
-        <ul>
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">Nonnika&#39;s Blog</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
             
-            <li class="menu-item-has-children ">
-                <a  href="/" target="">
-                    主页
-                </a>
-                
-            </li>
+            <li><a href="/">Home</a></li>
             
-            <li class="menu-item-has-children ">
-                <a  href="/archives/" target="">
-                    归档
-                </a>
-                
-                <ul>
-                    
-                    <li>
-                        <a  href="/tags/" target="">
-                            标签
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a  href="/categories/" target="">
-                            分类
-                        </a>
-                    </li>
-                    
-                </ul>
-                
-            </li>
+            <li><a href="/about">About</a></li>
             
-            <li class="menu-item-has-children ">
-                <a  href="/gallery" target="">
-                    相册集
-                </a>
-                
-            </li>
-            
-            <li class="menu-item-has-children ">
-                <a data-no-swup href="/about/" target="">
-                    关于
-                </a>
-                
-            </li>
+            <li><a href="/archives">Archives</a></li>
             
         </ul>
-    </nav>
+
+
+    </a>
 </div>
-<!-- menu end -->
-			
-    <!-- mode switcher place -->
-    <div class="trm-mode-switcher-place">
-        <div class="trm-mode-switcher">
-            <i class="iconfont far fa-sun"></i>
-            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
-            <label class="trm-swich" for="trm-swich"></label>
-            <i class="iconfont far fa-moon"></i>
-        </div>
-    </div>
-    <!-- mode switcher place end -->
 
-			
-    
-    <div id="trm-search-btn" class="trm-search-btn">
-        <i class="iconfont fas fa-search"></i>
-    </div>
-     
-
-		</div>
-		<div class="trm-menu-btn">
-			<span></span>
-		</div>
-	</div>
-</header>
-            <!-- top bar end -->
-
-            <!-- body -->
-            
-<div class="trm-content-start">
-    <!-- banner -->
-    <div class="trm-banner">
-    
-    <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="https://pic1.imgdb.cn/item/689dcd6958cb8da5c8250d68.jpg">
-    <!-- banner cover end -->
-    
-
-    <!-- banner content -->
-    <div class="trm-banner-content trm-overlay">
-        <div class="container">
-            <div class="row">
                 
-                <div class="col-lg-4"></div>
-                
-                <div class="col-lg-8">
-
-                    <!-- banner title -->
-                    <div class="trm-banner-text ">
-                        <div class="trm-label trm-mb-20">
-                            Code is cheap,show me your thought.
-                        </div>
-                        <h1 class="trm-mb-30 trm-hsmb-font">
-                            Kadane算法
-                        </h1>
-
-                        
-                            <ul class="trm-breadcrumbs trm-label">
-                                <li>
-                                    <a href="/" class="trm-anima-link">Home</a>
-                                </li>
-                                <li>
-                                    <span>
-                                        2025
-                                    </span>
-                                </li>
-                            </ul>
-                        
-                    </div>
-                    <!-- banner title end -->
-
-                    <!-- scroll hint -->
-                    <span id="scroll-triger" class="trm-scroll-hint-frame">
-                        <div class="trm-scroll-hint"></div>
-                        <span class="trm-label">Scroll down</span>
-                    </span>
-                    <!-- scroll hint end -->
-
-                </div>
-            </div>
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            Kadane算法
         </div>
-    </div>
-    <!-- banner content end -->
-</div>
-    <!-- banner end -->
-    <div class="container">
-        <div class="row">
+        <div class="post-meta">
+            2025-08-14 ｜ 
             
-                <div class="trm-page-sidebar col-lg-4 hidden-sm">
-                    <!-- main card -->
-                    <div class="trm-main-card-frame trm-sidebar">
-    <div class="trm-main-card"> 
-        <!-- card header -->
-<div class="trm-mc-header">
-    <div class="trm-avatar-frame trm-mb-20">
-        <img alt="Avatar" class="trm-avatar" src="/img/san.jpg">
-    </div>
-    <h5 class="trm-name trm-mb-15">
-        Nonnika.Y
-    </h5>
-    
-</div>
-<!-- card header end -->
-        <!-- sidebar social -->
-
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<div class="trm-social">
-    
-        <a href="https://github.com/Nonnika" title="github" rel="nofollow" target="_blank">
-            <i class="iconfont fab fa-github"></i>
-        </a>
-    
-        <a href="mailto:liewyoung@liewyoung.top" title="邮箱" rel="nofollow" target="_blank">
-            <i class="iconfont far fa-envelope"></i>
-        </a>
-    
-</div>
-
-<!-- sidebar social end -->
-        <!-- info -->
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<ul class="trm-table trm-mb-20">
-    
-        <li>
-            <div class="trm-label">
-                地址:
-            </div>
-            <div class="trm-label trm-label-light">
-                0001星球
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                年龄:
-            </div>
-            <div class="trm-label trm-label-light">
-                20
-            </div>
-        </li>
-    
-        <li>
-            <div class="trm-label">
-                CSDN:
-            </div>
-            <div class="trm-label trm-label-light">
-                @Beyond Aurora
-            </div>
-        </li>
-    
-</ul>
-<!-- info end -->
-
-        
-    </div>
-</div>
-                    <!-- main card end -->
-                </div>
+                <a href="/categories/ACM/"># ACM</a>
             
-            <div class="trm-page-content col-lg-8">
-                <div id="trm-content" class="trm-content">
-                    <div class="trm-post-info row hidden-sm">
-    <div class="col-sm-4">
-        <div class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
-            08/14
         </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-clock trm-icon"></i><br>
-            18:37
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
-            <i class="iconfont far fa-user trm-icon"></i><br>
-            LiewYoung
-        </div>
-    </div>
-</div>
-<div class="trm-card ">
-    <article id="article-container" class="trm-publication">
-    <h2 id="Kadane算法——最大子数组和问题">Kadane算法——最大子数组和问题</h2>
-<p>问题定义<br>
-给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。<br>
-子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。<br>
-Kadane算法的核心思想<br>
-Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。<br>
-核心状态转移方程：<br>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/ACM/">ACM</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="kadane算法最大子数组和问题"><a class="markdownIt-Anchor" href="#kadane算法最大子数组和问题"></a> Kadane算法——最大子数组和问题</h2>
+<p>问题定义<br />
+给定一个整数数组，找出其中和最大的连续子数组，并返回这个最大和。<br />
+子数组：数组中连续的元素序列。例如数组 [1,2,3,4] 的子数组有 [1]、[1,2]、[2,3]、[1,2,3] 等。<br />
+Kadane算法的核心思想<br />
+Kadane算法基于动态规划的思想，通过一次遍历就能找到最大子数组和。<br />
+核心状态转移方程：<br />
 dp[i] = max(nums[i], dp[i-1] + nums[i])</p>
 <p>其中 dp[i] 表示以第i个元素结尾的最大子数组和。</p>
-<h3 id="算法步骤：">算法步骤：</h3>
+<h3 id="算法步骤"><a class="markdownIt-Anchor" href="#算法步骤"></a> 算法步骤：</h3>
 <ol>
 <li>维护两个变量：current_max（当前最大值）和 global_max（全局最大值）</li>
 <li>从第二个元素开始遍历数组</li>
 <li>对于每个元素，选择较大值：要么单独成为新的子数组开始，要么加入前面的子数组</li>
 <li>更新全局最大值</li>
 </ol>
-<h3 id="算法示例">算法示例</h3>
-<p>以数组 [5, -3, 2, -1, 4] 为例：<br>
+<h3 id="算法示例"><a class="markdownIt-Anchor" href="#算法示例"></a> 算法示例</h3>
+<p>以数组 [5, -3, 2, -1, 4] 为例：<br />
 初始：current_max = 5, global_max = 5</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">i=<span class="number">1</span>, nums[<span class="number">1</span>]=<span class="number">-3</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">-3</span>, <span class="number">5</span>+(<span class="number">-3</span>)) = <span class="built_in">max</span>(<span class="number">-3</span>, <span class="number">2</span>) = <span class="number">2</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">2</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">2</span>, nums[<span class="number">2</span>]=<span class="number">2</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">2</span><span class="number">+2</span>) = <span class="number">4</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">4</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">3</span>, nums[<span class="number">3</span>]=<span class="number">-1</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">-1</span>, <span class="number">4</span>+(<span class="number">-1</span>)) = <span class="number">3</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">3</span>) = <span class="number">5</span></span><br><span class="line"></span><br><span class="line">i=<span class="number">4</span>, nums[<span class="number">4</span>]=<span class="number">4</span>:</span><br><span class="line">  current_max = <span class="built_in">max</span>(<span class="number">4</span>, <span class="number">3</span><span class="number">+4</span>) = <span class="number">7</span></span><br><span class="line">  global_max = <span class="built_in">max</span>(<span class="number">5</span>, <span class="number">7</span>) = <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp">i=<span class="hljs-number">1</span>, nums[<span class="hljs-number">1</span>]=<span class="hljs-number">-3</span>:<br>  current_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">-3</span>, <span class="hljs-number">5</span>+(<span class="hljs-number">-3</span>)) = <span class="hljs-built_in">max</span>(<span class="hljs-number">-3</span>, <span class="hljs-number">2</span>) = <span class="hljs-number">2</span><br>  global_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>, <span class="hljs-number">2</span>) = <span class="hljs-number">5</span><br><br>i=<span class="hljs-number">2</span>, nums[<span class="hljs-number">2</span>]=<span class="hljs-number">2</span>:<br>  current_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-number">2</span><span class="hljs-number">+2</span>) = <span class="hljs-number">4</span><br>  global_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>, <span class="hljs-number">4</span>) = <span class="hljs-number">5</span><br><br>i=<span class="hljs-number">3</span>, nums[<span class="hljs-number">3</span>]=<span class="hljs-number">-1</span>:<br>  current_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">-1</span>, <span class="hljs-number">4</span>+(<span class="hljs-number">-1</span>)) = <span class="hljs-number">3</span><br>  global_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>) = <span class="hljs-number">5</span><br><br>i=<span class="hljs-number">4</span>, nums[<span class="hljs-number">4</span>]=<span class="hljs-number">4</span>:<br>  current_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">4</span>, <span class="hljs-number">3</span><span class="hljs-number">+4</span>) = <span class="hljs-number">7</span><br>  global_max = <span class="hljs-built_in">max</span>(<span class="hljs-number">5</span>, <span class="hljs-number">7</span>) = <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
 <p>最终答案：7，对应子数组 [2, -1, 4]</p>
-<h3 id="为什么这样做是对的？">为什么这样做是对的？</h3>
-<p>当 current_max + nums[i] &lt; nums[i] 时，说明前面的子数组对当前元素产生了&quot;负贡献&quot;，此时应该抛弃前面的结果，从当前元素重新开始。这样保证了每一步都选择局部最优解，最终得到全局最优解。<br>
+<h3 id="为什么这样做是对的"><a class="markdownIt-Anchor" href="#为什么这样做是对的"></a> 为什么这样做是对的？</h3>
+<p>当 current_max + nums[i] &lt; nums[i] 时，说明前面的子数组对当前元素产生了&quot;负贡献&quot;，此时应该抛弃前面的结果，从当前元素重新开始。这样保证了每一步都选择局部最优解，最终得到全局最优解。<br />
 完整代码实现</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> max_sum;</span><br><span class="line">    <span class="type">int</span> start;</span><br><span class="line">    <span class="type">int</span> end;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Result <span class="title">kadane</span><span class="params">(<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> &#123;<span class="number">0</span>, <span class="number">-1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> current_max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> global_max = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>, temp_start = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; current_max + nums[i]) &#123;</span><br><span class="line">            current_max = nums[i];</span><br><span class="line">            temp_start = i;  <span class="comment">// 新的候选起点</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current_max += nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (current_max &gt; global_max) &#123;</span><br><span class="line">            global_max = current_max;</span><br><span class="line">            start = temp_start;</span><br><span class="line">            end = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> &#123;global_max, start, end&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">nums</span><span class="params">(n)</span></span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    Result result = <span class="built_in">kadane</span>(nums);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;最大子数组和: &quot;</span> &lt;&lt; result.max_sum &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;子数组范围: [&quot;</span> &lt;&lt; result.start &lt;&lt; <span class="string">&quot;, &quot;</span> &lt;&lt; result.end &lt;&lt; <span class="string">&quot;]&quot;</span> &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Result</span> &#123;<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> max_sum;<br>    <span class="hljs-type">int</span> start;<br>    <span class="hljs-type">int</span> end;<br>&#125;;<br><br><span class="hljs-function">Result <span class="hljs-title">kadane</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>    <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> &#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>&#125;;<br>    <br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> current_max = nums[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">long</span> <span class="hljs-type">long</span> global_max = nums[<span class="hljs-number">0</span>];<br>    <span class="hljs-type">int</span> start = <span class="hljs-number">0</span>, end = <span class="hljs-number">0</span>, temp_start = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-keyword">if</span> (nums[i] &gt; current_max + nums[i]) &#123;<br>            current_max = nums[i];<br>            temp_start = i;  <span class="hljs-comment">// 新的候选起点</span><br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            current_max += nums[i];<br>        &#125;<br>        <br>        <span class="hljs-keyword">if</span> (current_max &gt; global_max) &#123;<br>            global_max = current_max;<br>            start = temp_start;<br>            end = i;<br>        &#125;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> &#123;global_max, start, end&#125;;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n;<br>    cin &gt;&gt; n;<br>    <br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nums</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        cin &gt;&gt; nums[i];<br>    &#125;<br>    <br>    Result result = <span class="hljs-built_in">kadane</span>(nums);<br>    cout &lt;&lt; <span class="hljs-string">&quot;最大子数组和: &quot;</span> &lt;&lt; result.max_sum &lt;&lt; endl;<br>    cout &lt;&lt; <span class="hljs-string">&quot;子数组范围: [&quot;</span> &lt;&lt; result.start &lt;&lt; <span class="hljs-string">&quot;, &quot;</span> &lt;&lt; result.end &lt;&lt; <span class="hljs-string">&quot;]&quot;</span> &lt;&lt; endl;<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>复杂度分析</p>
 <ul>
 <li>时间复杂度：O(n)，只需要一次遍历</li>
@@ -414,256 +126,59 @@ dp[i] = max(nums[i], dp[i-1] + nums[i])</p>
 <li>空数组：根据题目要求返回0或报错</li>
 <li>数据范围大：使用 long long 防止溢出</li>
 </ol>
-<h2 id="推荐练习题">推荐练习题</h2>
+<h2 id="推荐练习题"><a class="markdownIt-Anchor" href="#推荐练习题"></a> 推荐练习题</h2>
 <ul>
 <li>LeetCode 53: Maximum Subarray</li>
 <li>LeetCode 918: Maximum Sum Circular Subarray</li>
 <li>杭电OJ 1003: Max Sum</li>
 </ul>
-<h2 id="算法扩展">算法扩展</h2>
+<h2 id="算法扩展"><a class="markdownIt-Anchor" href="#算法扩展"></a> 算法扩展</h2>
 <ul>
 <li>二维数组的最大子矩阵和</li>
 <li>环形数组的最大子数组和</li>
 <li>找出所有最大和的子数组</li>
 </ul>
 <p>Kadane算法是动态规划在数组问题中的经典应用，掌握其思想对解决类似问题很有帮助。</p>
+</div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+        </div>
+    
+<!-- tags -->
 
-</article>
-    
-    
-
-</div>
-<div class="trm-post-next-prev row">
-    <div class="col-lg-12">
-        <!-- title -->
-        <h5 class="trm-title-with-divider">
-            其他文章
-            <span data-number="02"></span>
-        </h5>
-    </div>
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2025/08/14/%E8%AF%BB%E3%80%8A%E9%9A%90%E8%97%8F%E7%9A%84%E6%BD%9C%E8%83%BD%E3%80%8B%E6%88%91%E5%BE%97%E5%88%B0%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="https://pic1.imgdb.cn/item/689a1de858cb8da5c81b0c4f.png">
-            
-        </a>
+    <div class="post-meta">
+        标签：
         
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                    读书笔记
-                </a>
-            </div>
-            <h5>
-                <a href="/2025/08/14/%E8%AF%BB%E3%80%8A%E9%9A%90%E8%97%8F%E7%9A%84%E6%BD%9C%E8%83%BD%E3%80%8B%E6%88%91%E5%BE%97%E5%88%B0%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" class="trm-anima-link">
-                    读《隐藏的潜能》我得到了什么？
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/14</li>
-                <li>20:00</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-blog-card trm-scroll-animation">
-        <a href="/2025/08/10/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86-2/" class="trm-cover-frame trm-anima-link">
-            
-            
-                <img alt="cover" class="no-fancybox" src="https://pic1.imgdb.cn/item/689a1d6f58cb8da5c81b0bdb.png">
-            
-        </a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/"> / 算法</a>
         
-        <div class="trm-card-descr">
-            <div class="trm-label trm-category trm-mb-20">
-                <a href=" /categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
-                    计算机基础
-                </a>
-            </div>
-            <h5>
-                <a href="/2025/08/10/%E8%B5%84%E6%BA%90%E6%95%B4%E7%90%86-2/" class="trm-anima-link">
-                    资源整理_2
-                </a>
-            </h5>
-            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/10</li>
-                <li>23:53</li>
-                
-                
-            </ul>
-        </div>
-    </div>
-</div>
-    
-</div>
-
-    
-
-
-
-                    <div class="trm-divider footer-divider"></div>
-
-                    <!-- footer -->
-                    <footer class="trm-footer-card trm-scroll-animation">
-
-    
-
-    
-
-    
-        <div class="trm-footer-item">
-            <span>
-                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
-            </span>
-            <span class="footer-separator" data-separator=" | "></span>
-            <span> 
-                主题 - 
-                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
-                v2.2.6
-            </span>
-        </div>
-      
-
-     
-
-     
-</footer>
-                    <!-- footer end -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-            <!-- body end -->
-
-            
-
-            
-<div class="trm-fixed-container">
-    
-    
-        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
-            <i class="iconfont fas fa-book-reader"></i>
-        </div>
-    
-    
-        <div class="trm-fixed-btn hidden-md" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
-            <i class="iconfont fas fa-arrows-alt-h"></i>
-        </div>
-    
-    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
-        <i class="iconfont fas fa-arrow-up"></i>
-    </div>
-</div>
-        </div>
-      </div>
-      <!-- scroll container end -->
-  </div>
-  <!-- app wrapper end -->
-
-  
-    <div class="trm-search-popup">
-        <div class="trm-search-wrapper">
-            <div class="form trm-search-form">
-                <div class="trm-search-input-icon">
-                    <i class="iconfont fas fa-search"></i>
-                </div>
-                <input class="trm-search-input" type="text" placeholder="搜索文章...">
-                <div class="trm-search-btn-close">
-                    <i class="iconfont fas fa-times"></i>
-                </div>
-            </div>
-            <div class="trm-search-result-container">
-                <div class="trm-search-empty">
-                    请输入关键词进行搜索
-                </div>
-            </div>
-            <div class="trm-search-footer">
-                <div class="trm-search-stats"></div>
-                <ul class="trm-search-commands">
-                    <li>
-                        <kbd class="command-palette-commands-key">
-                            <svg width="15" height="15" aria-label="Escape key" role="img">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="1.2">
-                                    <path
-                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
-                                    </path>
-                                </g>
-                            </svg>
-                        </kbd>
-                        <span class="command-palette-Label">to close</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-  <!-- Plugin -->
-
-
-
-
-    
-    
-<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-
-    
-
-    
-
-    
+            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"> / 动态规划</a>
         
-<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+    </div>
 
-        <script src="/js/plugins/local_search.js?v=2.2.6"></script>
-    
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
+    <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>
+</div>
 
-    <!-- 数学公式 -->
-    
-
-    <!-- 评论插件 -->
-    
-        
-
-        
-    
-
-		
+<link rel="stylesheet" href="/css/github.css">
 
 
+<script src="/js/highlight.min.js"></script>
 
 
-    <!-- Service Worker -->
-    
-    <!-- baidu push -->
-    
+<script src="/js/highlightjs-line-numbers.js"></script>
 
+<script>
+    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
+    // hljs.initHighlightingOnLoad();
+    // hljs.initLineNumbersOnLoad();
+</script>
 
-<script id="async-script" src="/js/main.js?v=2.2.6"></script>
-
-<!-- CDN -->
-
-
-    
-
-    
-
-    
-
-
-
-</body>
-
+            </div>
+        </div>
+    </body>
 </html>
