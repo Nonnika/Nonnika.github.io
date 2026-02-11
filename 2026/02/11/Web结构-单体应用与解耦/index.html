@@ -9,28 +9,28 @@
   
             
                     <title>
-                      依赖注入 - Nonnika&#39;s Blog
+                      Web结构:单体应用与解耦 - Nonnika&#39;s Blog
                     </title>
                     
                           
 
                             <!-- open graph -->
-                            <meta name="description" content="依赖注入  依赖项 很多时候，类都需要其他类的对象才能正常运行。如果某个类需要另一个类，则所需的类称为依赖项。  依赖注入（ DI ） 依赖项注入是指在运行时提供依赖项，而不是将其硬编码到调用类中。 实现依赖项注入：  有助于提高代码的可重用性。代码不依赖于特定对象，从而提高灵活性。 **使重构更轻松。**代码是松散耦合的，因此重构一段代码不会影响另一段代码。 **有助于进行测试。**可以在测试">
+                            <meta name="description" content="Web结构:单体应用与解耦  前端：表现逻辑 前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了）  后端：原始数据 后端作用就是处理原始数据，也包括应对前端的请求  单体架构 数据和网页都在后端完成，不仅要处理数据，还要把网页渲染好。  解耦架构 后端只负责给出数据 前端只负责处理数据   if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined">
 <meta property="og:type" content="article">
-<meta property="og:title" content="依赖注入">
-<meta property="og:url" content="https://blog.liewyoung.top/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:title" content="Web结构:单体应用与解耦">
+<meta property="og:url" content="https://blog.liewyoung.top/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/index.html">
 <meta property="og:site_name" content="Nonnika&#39;s Blog">
-<meta property="og:description" content="依赖注入  依赖项 很多时候，类都需要其他类的对象才能正常运行。如果某个类需要另一个类，则所需的类称为依赖项。  依赖注入（ DI ） 依赖项注入是指在运行时提供依赖项，而不是将其硬编码到调用类中。 实现依赖项注入：  有助于提高代码的可重用性。代码不依赖于特定对象，从而提高灵活性。 **使重构更轻松。**代码是松散耦合的，因此重构一段代码不会影响另一段代码。 **有助于进行测试。**可以在测试">
+<meta property="og:description" content="Web结构:单体应用与解耦  前端：表现逻辑 前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了）  后端：原始数据 后端作用就是处理原始数据，也包括应对前端的请求  单体架构 数据和网页都在后端完成，不仅要处理数据，还要把网页渲染好。  解耦架构 后端只负责给出数据 前端只负责处理数据   if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-23T12:04:17.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:published_time" content="2026-02-11T10:28:21.000Z">
+<meta property="article:modified_time" content="2026-02-11T11:40:56.791Z">
 <meta property="article:author" content="Nonnika">
-<meta property="article:tag" content="Nonnika">
+<meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
                               <!-- canonical -->
                               
                                     <link rel="canonical"
-                                      href="https://blog.liewyoung.top/2025/10/23/依赖注入/">
+                                      href="https://blog.liewyoung.top/2026/02/11/Web结构-单体应用与解耦/">
                                     
                                       <!-- Favicon (已移除) -->
                                       <!-- CSS -->
@@ -75,32 +75,32 @@
                 <div class="post-main">
     
         <div class="post-main-title">
-            依赖注入
+            Web结构:单体应用与解耦
         </div>
         <div class="post-meta">
-            2025-10-23 ｜ 
+            2026-02-11 ｜ 
             
-                <a href="/categories/Android/"># Android</a>
+                <a href="/categories/Go/"># Go</a>
             
         </div>
         <!-- 圆角分类 -->
         <!-- <div class="tags"> -->
             <!--  -->
-                <!-- <a href="/categories/Android/">Android</a> -->
+                <!-- <a href="/categories/Go/">Go</a> -->
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="依赖注入"><a class="markdownIt-Anchor" href="#依赖注入"></a> 依赖注入</h1>
-<h2 id="依赖项"><a class="markdownIt-Anchor" href="#依赖项"></a> 依赖项</h2>
-<p>很多时候，类都需要其他类的对象才能正常运行。如果某个类需要另一个类，则所需的类称为<strong>依赖项</strong>。</p>
-<h2 id="依赖注入-di"><a class="markdownIt-Anchor" href="#依赖注入-di"></a> 依赖注入（ DI ）</h2>
-<p>依赖项注入是指在运行时提供依赖项，而不是将其硬编码到调用类中。</p>
-<p>实现依赖项注入：</p>
-<ul>
-<li><strong>有助于提高代码的可重用性</strong>。代码不依赖于特定对象，从而提高灵活性。</li>
-<li>**使重构更轻松。**代码是松散耦合的，因此重构一段代码不会影响另一段代码。</li>
-<li>**有助于进行测试。**可以在测试期间传入测试对象。</li>
-</ul>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="web结构单体应用与解耦"><a class="markdownIt-Anchor" href="#web结构单体应用与解耦"></a> Web结构:单体应用与解耦</h1>
+<h2 id="前端表现逻辑"><a class="markdownIt-Anchor" href="#前端表现逻辑"></a> 前端：表现逻辑</h2>
+<p>前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了）</p>
+<h2 id="后端原始数据"><a class="markdownIt-Anchor" href="#后端原始数据"></a> 后端：原始数据</h2>
+<p>后端作用就是处理原始数据，也包括应对前端的请求</p>
+<h2 id="单体架构"><a class="markdownIt-Anchor" href="#单体架构"></a> 单体架构</h2>
+<p>数据和网页都在后端完成，不仅要处理数据，还要把网页渲染好。</p>
+<h2 id="解耦架构"><a class="markdownIt-Anchor" href="#解耦架构"></a> 解耦架构</h2>
+<p>后端只负责给出数据</p>
+<p>前端只负责处理数据</p>
+<h1 id=""><a class="markdownIt-Anchor" href="#"></a> </h1>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -110,6 +110,13 @@
         </div>
     
 <!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/Go/"> / Go</a>
+        
+    </div>
 
 </div>
                 <div class="footer">

@@ -15,12 +15,12 @@
                           
 
                             <!-- open graph -->
-                            <meta name="description" content="Http 方法 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括： GET POST PUT DELETE GET 方法 GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。 其被认为是一种安全的方法，因为其不改变服务器的状态。 用 Go 发起一个 GET  请求 1resp, err :&#x3D; http.Get(&quot;&lt;U">
+                            <meta name="description" content="Http 方法 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括： GET POST PUT DELETE  GET 方法 GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。 其被认为是一种安全的方法，因为其不改变服务器的状态。  用 Go 发起一个 GET  请求 1resp, err :&#x3D; http.Get(&quot;&amp;l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Http方法">
 <meta property="og:url" content="https://blog.liewyoung.top/2026/02/08/Http%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Nonnika&#39;s Blog">
-<meta property="og:description" content="Http 方法 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括： GET POST PUT DELETE GET 方法 GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。 其被认为是一种安全的方法，因为其不改变服务器的状态。 用 Go 发起一个 GET  请求 1resp, err :&#x3D; http.Get(&quot;&lt;U">
+<meta property="og:description" content="Http 方法 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括： GET POST PUT DELETE  GET 方法 GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。 其被认为是一种安全的方法，因为其不改变服务器的状态。  用 Go 发起一个 GET  请求 1resp, err :&#x3D; http.Get(&quot;&amp;l">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-08T05:51:10.000Z">
 <meta property="article:modified_time" content="2026-02-08T06:29:11.406Z">
@@ -90,42 +90,42 @@
             <!--  -->
         <!-- </div> -->
         <div class="post-md">
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1>Http 方法</h1>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="http-方法"><a class="markdownIt-Anchor" href="#http-方法"></a> Http 方法</h1>
 <p>HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括：</p>
-<p><code>GET</code><br>
-<code>POST</code><br>
-<code>PUT</code><br>
+<p><code>GET</code><br />
+<code>POST</code><br />
+<code>PUT</code><br />
 <code>DELETE</code></p>
-<h2 id="GET-方法">GET 方法</h2>
+<h2 id="get-方法"><a class="markdownIt-Anchor" href="#get-方法"></a> GET 方法</h2>
 <p><code>GET</code>  方法用于获取服务器资源，它获取资源<strong>副本</strong>或者<strong>资源的表示形式</strong>。 其被认为是一种安全的方法，因为其<strong>不改变</strong>服务器的状态。</p>
-<h3 id="用-Go-发起一个-GET-请求">用 <code>Go</code> 发起一个 <code>GET</code>  请求</h3>
+<h3 id="用-go-发起一个-get-请求"><a class="markdownIt-Anchor" href="#用-go-发起一个-get-请求"></a> 用 <code>Go</code> 发起一个 <code>GET</code>  请求</h3>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">resp, err := http.Get(<span class="hljs-string">&quot;&lt;URL&gt;&quot;</span>)<br></code></pre></td></tr></table></figure>
-<h2 id="POST-方法">POST  方法</h2>
+<h2 id="post-方法"><a class="markdownIt-Anchor" href="#post-方法"></a> POST  方法</h2>
 <p><code>PSOT</code> 方法用于将请求发送到服务器<strong>创建新资源</strong></p>
-<h3 id="用-Go-发起一个-POST-请求">用 <code>Go</code> 发起一个 <code>POST</code> 请求</h3>
+<h3 id="用-go-发起一个-post-请求"><a class="markdownIt-Anchor" href="#用-go-发起一个-post-请求"></a> 用 <code>Go</code> 发起一个 <code>POST</code> 请求</h3>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">resp, err := http.Post(url, <span class="hljs-string">&quot;application/json&quot;</span>, bytes.NewBuffer(jsonData))<br></code></pre></td></tr></table></figure>
-<h2 id="PUT-方法">PUT 方法</h2>
+<h2 id="put-方法"><a class="markdownIt-Anchor" href="#put-方法"></a> PUT 方法</h2>
 <p><code>PUT</code> 方法常用于<strong>更新数据</strong>，为什么说常用于更新数据？因为比如我们创建一个用户 ID：001,我们可以使用 <code>PUT</code> 方法告诉服务“Hi Bro，把这个加上去”。你可以会疑问**为什么不用 <code>POST</code> **？说的对，确实可以使用 <code>POST</code> 但是我们一般不这样因为 <code>PUT</code> 的理念就是 <strong>“ 保持资源一致性”</strong>，服务器会遵守 <code>PUT</code> 携带的数据并对于重复 <code>PUT</code> 仅创建一次资源且返回 200 状态码，但对于 <code>POST</code> 很可能不是这样，使用 <code>POST</code> 会带来两种可能：</p>
 <ul>
 <li>创建多个重复资源</li>
 <li>返回 40X 状态码</li>
 </ul>
-<h2 id="DELETE-方法">DELETE 方法</h2>
+<h2 id="delete-方法"><a class="markdownIt-Anchor" href="#delete-方法"></a> DELETE 方法</h2>
 <p><code>DELETE</code> 方法的作用正如你所预期：删除指定的资源。</p>
-<h2 id="最后一个问题：-为什么要用这些方法？">最后一个问题： 为什么要用这些方法？</h2>
+<h2 id="最后一个问题-为什么要用这些方法"><a class="markdownIt-Anchor" href="#最后一个问题-为什么要用这些方法"></a> 最后一个问题： 为什么要用这些方法？</h2>
 <p>我们对于服务器的操作大到 LLM 如：豆包、千问、DeepSeek ,小到学校的学生信息录入。都不过是 <strong>CRUD</strong> （Create Remove Update Delete）的变体 。我们规范这些操作也方便与后端程序程序员对应。</p>
-<h3 id="附录：">附录：</h3>
+<h3 id="附录"><a class="markdownIt-Anchor" href="#附录"></a> 附录：</h3>
 <p>STATUS CODE：</p>
-<p>200 OK<br>
-201 Created<br>
-204 No Content<br>
-301 Moved Permanently<br>
-304 Not Modified<br>
-400 Bad Request<br>
-401 Unauthorized<br>
-403 Forbidden<br>
-404 Not Found<br>
-409 Conflict<br>
+<p>200 OK<br />
+201 Created<br />
+204 No Content<br />
+301 Moved Permanently<br />
+304 Not Modified<br />
+400 Bad Request<br />
+401 Unauthorized<br />
+403 Forbidden<br />
+404 Not Found<br />
+409 Conflict<br />
 500 Internal Server Error</p>
 </div><script src="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
