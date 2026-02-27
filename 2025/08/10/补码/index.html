@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     name="viewport" />
   <meta name="robots" content="index, follow">
+
+  <!-- SEO: 搜索引擎验证（获取验证码后取消注释并填入） -->
+  <meta name="google-site-verification" content="m6tVLxlBhNiPB73JBlVS_E1wwVF81EA9Ts6_8jX_DBA" />
+  <!-- <meta name="baidu-site-verification" content="你的百度验证码" /> -->
+
   <!-- title -->
   
             
@@ -14,8 +19,24 @@
                     
                           
 
-                            <!-- open graph -->
-                            <meta name="description" content="作者：Liew.Y AIGC声明：部分使用AIGC   对于正数，补码与原码相同的。   负数在计算机中是使用其补码来表示的   对于负数，补码是将原码的符号位保持不变，数值位按位取反后加1   123原码：10000001补码：Step1：11111110 Step2：11111111  在计算机中，反码（One’s Complement） 是一种数值的二进制表示方法，常用于辅助补码的计算。它的">
+                            <!-- SEO: meta description -->
+                            
+                              <meta name="description"
+                                content="作者：Liew.Y AIGC声明：部分使用AIGC   对于正数，补码与原码相同的。   负数在计算机中是使用其补码来表示的   对于负数，补码是将原码的符号位保持不变，数值位按位取反后加1   123原码：10000001补码：Step1：11111110 Step2：11111111  在计算机中，反码（One’s">
+                              
+
+                                      <!-- SEO: meta keywords -->
+                                      
+                                        
+                                          
+                                            
+                                              
+                                                <meta name="keywords" content="算法,计算机基础">
+                                                
+                                                    
+
+                                                        <!-- open graph -->
+                                                        <meta name="description" content="作者：Liew.Y AIGC声明：部分使用AIGC   对于正数，补码与原码相同的。   负数在计算机中是使用其补码来表示的   对于负数，补码是将原码的符号位保持不变，数值位按位取反后加1   123原码：10000001补码：Step1：11111110 Step2：11111111  在计算机中，反码（One’s Complement） 是一种数值的二进制表示方法，常用于辅助补码的计算。它的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="补码">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/08/10/%E8%A1%A5%E7%A0%81/index.html">
@@ -27,30 +48,62 @@
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-                              <!-- canonical -->
-                              
-                                    <link rel="canonical"
-                                      href="https://blog.liewyoung.top/2025/08/10/补码/">
-                                    
-                                      <!-- Favicon (已移除) -->
-                                      <!-- CSS -->
-                                      
+
+                                                          <!-- canonical -->
+                                                          
+                                                                <link rel="canonical"
+                                                                  href="https://blog.liewyoung.top/2025/08/10/补码/">
+                                                                
+
+                                                                  <!-- RSS autodiscovery -->
+                                                                  <link rel="alternate" type="application/atom+xml"
+                                                                    title="Nonnika&#39;s Blog"
+                                                                    href="/atom.xml" />
+
+                                                                  <!-- SEO: JSON-LD 结构化数据 -->
+                                                                  
+                                                                    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "补码",
+    "datePublished": "2025-08-10T10:30:42+08:00",
+    "dateModified": "2026-02-05T15:37:18+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Nonnika"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nonnika&#39;s Blog"
+    },
+    "description": "作者：Liew.Y AIGC声明：部分使用AIGC   对于正数，补码与原码相同的。   负数在计算机中是使用其补码来表示的   对于负数，补码是将原码的符号位保持不变，数值位按位取反后加1   123原码：10000001补码：Step1：11111110 Step2：11111111  在计算机中，反码（One’s",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://blog.liewyoung.top/2025/08/10/补码/"
+    }
+  }
+  </script>
+                                                                    
+
+                                                                        <!-- Favicon (已移除) -->
+                                                                        <!-- CSS -->
+                                                                        
 <link rel="stylesheet" href="/css/reset.css">
 
-                                        
+                                                                          
 <link rel="stylesheet" href="/css/style.css">
 
-                                          
+                                                                            
 <link rel="stylesheet" href="/css/markdown.css">
 
-                                            
+                                                                              
 <link rel="stylesheet" href="/css/fonts.css">
 
-                                              
+                                                                                
 <link rel="stylesheet" href="/css/github.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nonnika's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
     <body>
         <div class="paper">
@@ -74,23 +127,17 @@
 </div>
 
                         
-                                    <div class="post-main">
+                                    <article class="post-main">
     
         <div class="post-main-title">
             补码
         </div>
         <div class="post-meta">
-            2025-08-10 ｜ 
+            <time datetime="2025-08-10">2025-08-10</time> ｜
             
                 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"># 计算机基础</a>
-            
+                
         </div>
-        <!-- 圆角分类 -->
-        <!-- <div class="tags"> -->
-            <!--  -->
-                <!-- <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a> -->
-            <!--  -->
-        <!-- </div> -->
         <div class="post-md">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>作者</strong>：Liew.Y<br />
 <strong>AIGC声明</strong>：部分使用AIGC</p>
@@ -155,17 +202,17 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>
         </div>
-    
-<!-- tags -->
-
-    <div class="post-meta">
-        标签：
         
-            <a href="/tags/%E7%AE%97%E6%B3%95/"> / 算法</a>
-        
-    </div>
-
-</div>
+                <!-- tags -->
+                
+                    <div class="post-meta">
+                        标签：
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95/"> / 算法</a>
+                            
+                    </div>
+                    
+</article>
                                         <div class="footer">
     <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
     <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>

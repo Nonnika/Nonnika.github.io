@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     name="viewport" />
   <meta name="robots" content="index, follow">
+
+  <!-- SEO: 搜索引擎验证（获取验证码后取消注释并填入） -->
+  <meta name="google-site-verification" content="m6tVLxlBhNiPB73JBlVS_E1wwVF81EA9Ts6_8jX_DBA" />
+  <!-- <meta name="baidu-site-verification" content="你的百度验证码" /> -->
+
   <!-- title -->
   
     
@@ -14,40 +19,79 @@
       
           
 
-                            <!-- open graph -->
-                            <meta name="description" content="Nonnika&#39;s blogs，Nonnika">
+                            <!-- SEO: meta description -->
+                            
+                                    <meta name="description" content="Nonnika 的个人博客，分享编程技术、学习方法、AI、Web 开发等内容">
+                                    
+
+                                      <!-- SEO: meta keywords -->
+                                      
+                                                      <meta name="keywords"
+                                                        content="Nonnika,编程,技术博客,Web开发,AI,学习方法">
+                                                      
+
+                                                        <!-- open graph -->
+                                                        <meta name="description" content="Nonnika 的个人博客，分享编程技术、学习方法、AI、Web 开发等内容">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nonnika&#39;s Blog">
 <meta property="og:url" content="https://blog.liewyoung.top/index.html">
 <meta property="og:site_name" content="Nonnika&#39;s Blog">
-<meta property="og:description" content="Nonnika&#39;s blogs，Nonnika">
+<meta property="og:description" content="Nonnika 的个人博客，分享编程技术、学习方法、AI、Web 开发等内容">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Nonnika">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="技术博客">
+<meta property="article:tag" content="Web开发">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="学习方法">
 <meta name="twitter:card" content="summary">
-                              <!-- canonical -->
-                              
-                                <link rel="canonical" href="https://blog.liewyoung.top">
-                                
-                                      <!-- Favicon (已移除) -->
-                                      <!-- CSS -->
-                                      
+
+                                                          <!-- canonical -->
+                                                          
+                                                            <link rel="canonical" href="https://blog.liewyoung.top">
+                                                            
+
+                                                                  <!-- RSS autodiscovery -->
+                                                                  <link rel="alternate" type="application/atom+xml"
+                                                                    title="Nonnika&#39;s Blog"
+                                                                    href="/atom.xml" />
+
+                                                                  <!-- SEO: JSON-LD 结构化数据 -->
+                                                                  
+                                                                      <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nonnika&#39;s Blog",
+    "url": "https://blog.liewyoung.top",
+    "description": "Nonnika 的个人博客，分享编程技术、学习方法、AI、Web 开发等内容",
+    "author": {
+      "@type": "Person",
+      "name": "Nonnika"
+    }
+  }
+  </script>
+                                                                      
+
+                                                                        <!-- Favicon (已移除) -->
+                                                                        <!-- CSS -->
+                                                                        
 <link rel="stylesheet" href="/css/reset.css">
 
-                                        
+                                                                          
 <link rel="stylesheet" href="/css/style.css">
 
-                                          
+                                                                            
 <link rel="stylesheet" href="/css/markdown.css">
 
-                                            
+                                                                              
 <link rel="stylesheet" href="/css/fonts.css">
 
-                                              
+                                                                                
 <link rel="stylesheet" href="/css/github.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nonnika's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
     <body>
         <div class="paper">
@@ -86,25 +130,29 @@
                                 
                                     <div class="post-list">
     
-    <div class="post">
-        <a class="post-title" href="/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/">Web结构:单体应用与解耦</a>
-        <div class="post-except">
-             Web结构:单体应用与解耦
+        <article class="post">
+            <a class="post-title" href="/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/">
+                Web结构:单体应用与解耦
+            </a>
+            <div class="post-except">
+                 Web结构:单体应用与解耦
  前端：表现逻辑
 前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了）
  后端：原始数据
 后端作用就是处理原始数据，也包括应对前端的请求
  单体架构
 数据和网页都在后端完成，不仅要处理数据，还要把网页渲
-            <a class="read-more" href="/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.11</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/">Http Pattern模式</a>
-        <div class="post-except">
-             Pattern
+                    <a class="read-more" href="/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-11">2026.02.11</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/">
+                Http Pattern模式
+            </a>
+            <div class="post-except">
+                 Pattern
  什么是 Pattern ？
 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。
  规则和定义
@@ -112,15 +160,17 @@
 
 固定 URL 路径
 如：/hello 则只会处理 /hello 不会处理 /
-            <a class="read-more" href="/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.11</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2026/02/08/Linux-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">Linux 基本使用</a>
-        <div class="post-except">
-             Linux 基本使用
+                    <a class="read-more" href="/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-11">2026.02.11</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2026/02/08/Linux-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                Linux 基本使用
+            </a>
+            <div class="post-except">
+                 Linux 基本使用
  终端和 SHELL
 终端：渲染命令输入和输出
 SHELL：解释命令并输出
@@ -130,29 +180,33 @@ shell 就是一个命令解释器，他解释你的命令并输出。
 R : READ
 E : Evalute
 P : PRINT
-            <a class="read-more" href="/2026/02/08/Linux-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.08</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2026/02/08/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">cURL基本使用</a>
-        <div class="post-except">
-             cURL 基本使用
+                    <a class="read-more" href="/2026/02/08/Linux-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-08">2026.02.08</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2026/02/08/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                cURL基本使用
+            </a>
+            <div class="post-except">
+                 cURL 基本使用
 curl 是目前最流行、最强大的命令行网络工具之一，全称 Client URL（客户端 URL 工具）。
  安装
 基本上不论 Windows 还是 Linux 都是预装的
  基础
 1curl https://archlinux.org  
-            <a class="read-more" href="/2026/02/08/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.08</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2026/02/08/Http%E6%96%B9%E6%B3%95/">Http方法</a>
-        <div class="post-except">
-             Http 方法
+                    <a class="read-more" href="/2026/02/08/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-08">2026.02.08</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2026/02/08/Http%E6%96%B9%E6%B3%95/">
+                Http方法
+            </a>
+            <div class="post-except">
+                 Http 方法
 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括：
 GET
 POST
@@ -160,53 +214,61 @@ PUT
 DELETE
  GET 方法
 GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。 其被认为是一种
-            <a class="read-more" href="/2026/02/08/Http%E6%96%B9%E6%B3%95/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.08</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2026/02/05/%E6%A0%87%E5%87%86/">标准</a>
-        <div class="post-except">
-             标准
+                    <a class="read-more" href="/2026/02/08/Http%E6%96%B9%E6%B3%95/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-08">2026.02.08</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2026/02/05/%E6%A0%87%E5%87%86/">
+                标准
+            </a>
+            <div class="post-except">
+                 标准
 很多事情都有标准……吗？就拿一个经典的作文题目来说吧：
 
 “在世界上，你认为什么东西是廉价的？什么东西是宝贵的？”
 
 这个作文题目好吗？好，非常好。为什么好？因为这就是在说标准这个东西，题目建立了一种假设每个都有一个标准，这个标准会把东西划分成宝贵和廉
-            <a class="read-more" href="/2026/02/05/%E6%A0%87%E5%87%86/"> ... </a>
-        </div>
-        <div class="post-date">2026.02.05</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2025/11/09/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">关于学习</a>
-        <div class="post-except">
-            
+                    <a class="read-more" href="/2026/02/05/%E6%A0%87%E5%87%86/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2026-02-05">2026.02.05</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2025/11/09/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/">
+                关于学习
+            </a>
+            <div class="post-except">
+                
 来自：Andy的观点
 
 高效学习的深层逻辑：在无用之用、知行合一与认知共生中成长
 近年来，“高效学习”成为热门话题，各类方法论层出不穷。然而，真正触及学习本质的路径，往往不在于技巧堆砌，而在于对学习本身的理解深度。有人提出一种看似“反效率”的高效学习观——强
-            <a class="read-more" href="/2025/11/09/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/"> ... </a>
-        </div>
-        <div class="post-date">2025.11.09</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2025/10/23/AI%E8%AE%A9%E6%88%91%E4%BB%AC%E5%8F%98%E5%BC%B1%E4%BA%86%E5%90%97/">AI让我们变弱了吗</a>
-        <div class="post-except">
-            辩题分析：AI时代，使人变得更强还是更弱了？
+                    <a class="read-more" href="/2025/11/09/%E5%85%B3%E4%BA%8E%E5%AD%A6%E4%B9%A0/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2025-11-09">2025.11.09</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2025/10/23/AI%E8%AE%A9%E6%88%91%E4%BB%AC%E5%8F%98%E5%BC%B1%E4%BA%86%E5%90%97/">
+                AI让我们变弱了吗
+            </a>
+            <div class="post-except">
+                辩题分析：AI时代，使人变得更强还是更弱了？
 ​首先分析辩题，“AI”和“人类”是相当经典的科技进步与人类机能的关系。我们要从“强”和“弱”这两个方面来看，在矛盾中寻找统一的关系，最终得出观点。
 ​先分析辩题涉及的范围“AI”。那我们要如何理解AI呢？首先，我
-            <a class="read-more" href="/2025/10/23/AI%E8%AE%A9%E6%88%91%E4%BB%AC%E5%8F%98%E5%BC%B1%E4%BA%86%E5%90%97/"> ... </a>
-        </div>
-        <div class="post-date">2025.10.23</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">依赖注入</a>
-        <div class="post-except">
-             依赖注入
+                    <a class="read-more" href="/2025/10/23/AI%E8%AE%A9%E6%88%91%E4%BB%AC%E5%8F%98%E5%BC%B1%E4%BA%86%E5%90%97/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2025-10-23">2025.10.23</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+                依赖注入
+            </a>
+            <div class="post-except">
+                 依赖注入
  依赖项
 很多时候，类都需要其他类的对象才能正常运行。如果某个类需要另一个类，则所需的类称为依赖项。
  依赖注入（ DI ）
@@ -214,20 +276,22 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
 实现依赖项注入：
 
 有助于提高代码的可重用性。代码不依赖于
-            <a class="read-more" href="/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"> ... </a>
-        </div>
-        <div class="post-date">2025.10.23</div>
-    </div>
-    
-    <div class="post">
-        <a class="post-title" href="/2025/10/14/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E5%A4%A7%E5%B8%88Prompt/">头脑风暴大师Prompt</a>
-        <div class="post-except">
-            12345678910111213141516171819202122232425262728293031323334role: 一个思维发散但不偏离主题的良好讨论者（头脑风暴大师）special: 善于使用emojiskill: - 擅长思考对方提出的观点-
-            <a class="read-more" href="/2025/10/14/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E5%A4%A7%E5%B8%88Prompt/"> ... </a>
-        </div>
-        <div class="post-date">2025.10.14</div>
-    </div>
-    
+                    <a class="read-more" href="/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2025-10-23">2025.10.23</time></div>
+        </article>
+        
+        <article class="post">
+            <a class="post-title" href="/2025/10/14/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E5%A4%A7%E5%B8%88Prompt/">
+                头脑风暴大师Prompt
+            </a>
+            <div class="post-except">
+                12345678910111213141516171819202122232425262728293031323334role: 一个思维发散但不偏离主题的良好讨论者（头脑风暴大师）special: 善于使用emojiskill: - 擅长思考对方提出的观点-
+                    <a class="read-more" href="/2025/10/14/%E5%A4%B4%E8%84%91%E9%A3%8E%E6%9A%B4%E5%A4%A7%E5%B8%88Prompt/"> ... </a>
+            </div>
+            <div class="post-date"><time datetime="2025-10-14">2025.10.14</time></div>
+        </article>
+        
 </div>
 
 <div class="paginator">

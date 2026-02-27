@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     name="viewport" />
   <meta name="robots" content="index, follow">
+
+  <!-- SEO: 搜索引擎验证（获取验证码后取消注释并填入） -->
+  <meta name="google-site-verification" content="m6tVLxlBhNiPB73JBlVS_E1wwVF81EA9Ts6_8jX_DBA" />
+  <!-- <meta name="baidu-site-verification" content="你的百度验证码" /> -->
+
   <!-- title -->
   
             
@@ -14,8 +19,24 @@
                     
                           
 
-                            <!-- open graph -->
-                            <meta name="description" content="声明式框架：从底层逻辑到实践  本文使用AIGC生成   一、什么是声明式框架？ 核心定义：声明式框架是一种编程范式，开发者只需描述&quot;UI应该是什么样子&quot;，而不必关心&quot;如何实现这个样子&quot;。 12345&#x2F;&#x2F; 声明式伪代码示例UI &#123;   Text(&quot;Hello World&quot;)   Button(&quot;Click Me&amp;qu">
+                            <!-- SEO: meta description -->
+                            
+                              <meta name="description"
+                                content="声明式框架：从底层逻辑到实践  本文使用AIGC生成   一、什么是声明式框架？ 核心定义：声明式框架是一种编程范式，开发者只需描述&amp;quot;UI应该是什么样子&amp;quot;，而不必关心&amp;quot;如何实现这个样子&amp;quot;。 12345// 声明式伪代码示例UI &amp;#123;   Text(&amp;quot;Hello">
+                              
+
+                                      <!-- SEO: meta keywords -->
+                                      
+                                        
+                                          
+                                            
+                                              
+                                                <meta name="keywords" content="JetpackCompose,Android">
+                                                
+                                                    
+
+                                                        <!-- open graph -->
+                                                        <meta name="description" content="声明式框架：从底层逻辑到实践  本文使用AIGC生成   一、什么是声明式框架？ 核心定义：声明式框架是一种编程范式，开发者只需描述&quot;UI应该是什么样子&quot;，而不必关心&quot;如何实现这个样子&quot;。 12345&#x2F;&#x2F; 声明式伪代码示例UI &#123;   Text(&quot;Hello World&quot;)   Button(&quot;Click Me&amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JetpackCompose声明式框架">
 <meta property="og:url" content="https://blog.liewyoung.top/2025/09/01/JetpackCompose%E5%A3%B0%E6%98%8E%E5%BC%8F%E6%A1%86%E6%9E%B6/index.html">
@@ -27,30 +48,62 @@
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="JetpackCompose">
 <meta name="twitter:card" content="summary">
-                              <!-- canonical -->
-                              
-                                    <link rel="canonical"
-                                      href="https://blog.liewyoung.top/2025/09/01/JetpackCompose声明式框架/">
-                                    
-                                      <!-- Favicon (已移除) -->
-                                      <!-- CSS -->
-                                      
+
+                                                          <!-- canonical -->
+                                                          
+                                                                <link rel="canonical"
+                                                                  href="https://blog.liewyoung.top/2025/09/01/JetpackCompose声明式框架/">
+                                                                
+
+                                                                  <!-- RSS autodiscovery -->
+                                                                  <link rel="alternate" type="application/atom+xml"
+                                                                    title="Nonnika&#39;s Blog"
+                                                                    href="/atom.xml" />
+
+                                                                  <!-- SEO: JSON-LD 结构化数据 -->
+                                                                  
+                                                                    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "JetpackCompose声明式框架",
+    "datePublished": "2025-09-01T22:20:42+08:00",
+    "dateModified": "2026-02-05T15:37:18+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Nonnika"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nonnika&#39;s Blog"
+    },
+    "description": "声明式框架：从底层逻辑到实践  本文使用AIGC生成   一、什么是声明式框架？ 核心定义：声明式框架是一种编程范式，开发者只需描述&amp;quot;UI应该是什么样子&amp;quot;，而不必关心&amp;quot;如何实现这个样子&amp;quot;。 12345// 声明式伪代码示例UI &amp;#123;   Text(&amp;quot;Hello",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://blog.liewyoung.top/2025/09/01/JetpackCompose声明式框架/"
+    }
+  }
+  </script>
+                                                                    
+
+                                                                        <!-- Favicon (已移除) -->
+                                                                        <!-- CSS -->
+                                                                        
 <link rel="stylesheet" href="/css/reset.css">
 
-                                        
+                                                                          
 <link rel="stylesheet" href="/css/style.css">
 
-                                          
+                                                                            
 <link rel="stylesheet" href="/css/markdown.css">
 
-                                            
+                                                                              
 <link rel="stylesheet" href="/css/fonts.css">
 
-                                              
+                                                                                
 <link rel="stylesheet" href="/css/github.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nonnika's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
     <body>
         <div class="paper">
@@ -74,23 +127,17 @@
 </div>
 
                         
-                                    <div class="post-main">
+                                    <article class="post-main">
     
         <div class="post-main-title">
             JetpackCompose声明式框架
         </div>
         <div class="post-meta">
-            2025-09-01 ｜ 
+            <time datetime="2025-09-01">2025-09-01</time> ｜
             
                 <a href="/categories/Android/"># Android</a>
-            
+                
         </div>
-        <!-- 圆角分类 -->
-        <!-- <div class="tags"> -->
-            <!--  -->
-                <!-- <a href="/categories/Android/">Android</a> -->
-            <!--  -->
-        <!-- </div> -->
         <div class="post-md">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="声明式框架从底层逻辑到实践"><a class="markdownIt-Anchor" href="#声明式框架从底层逻辑到实践"></a> 声明式框架：从底层逻辑到实践</h1>
 <blockquote>
@@ -165,17 +212,17 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>
         </div>
-    
-<!-- tags -->
-
-    <div class="post-meta">
-        标签：
         
-            <a href="/tags/JetpackCompose/"> / JetpackCompose</a>
-        
-    </div>
-
-</div>
+                <!-- tags -->
+                
+                    <div class="post-meta">
+                        标签：
+                        
+                            <a href="/tags/JetpackCompose/"> / JetpackCompose</a>
+                            
+                    </div>
+                    
+</article>
                                         <div class="footer">
     <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
     <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>

@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     name="viewport" />
   <meta name="robots" content="index, follow">
+
+  <!-- SEO: 搜索引擎验证（获取验证码后取消注释并填入） -->
+  <meta name="google-site-verification" content="m6tVLxlBhNiPB73JBlVS_E1wwVF81EA9Ts6_8jX_DBA" />
+  <!-- <meta name="baidu-site-verification" content="你的百度验证码" /> -->
+
   <!-- title -->
   
             
@@ -14,8 +19,24 @@
                     
                           
 
-                            <!-- open graph -->
-                            <meta name="description" content="Pattern  什么是 Pattern ？ 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。  规则和定义   固定 URL 路径 如：&#x2F;hello 则只会处理 &#x2F;hello 不会处理 &#x2F;hello&#x2F;   子树路径 如：&#x2F;hello&#x2F; 会处理 &#x2F;hello&#x2F;hello.css   最长匹配优先 如：&#x2F;hello&#x2F; 请求会匹配到">
+                            <!-- SEO: meta description -->
+                            
+                              <meta name="description"
+                                content="Pattern  什么是 Pattern ？ 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。  规则和定义   固定 URL 路径 如：/hello 则只会处理 /hello 不会处理 /hello/   子树路径 如：/hello/ 会处理 /h">
+                              
+
+                                      <!-- SEO: meta keywords -->
+                                      
+                                        
+                                          
+                                            
+                                              
+                                                <meta name="keywords" content="Go,Go">
+                                                
+                                                    
+
+                                                        <!-- open graph -->
+                                                        <meta name="description" content="Pattern  什么是 Pattern ？ 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。  规则和定义   固定 URL 路径 如：&#x2F;hello 则只会处理 &#x2F;hello 不会处理 &#x2F;hello&#x2F;   子树路径 如：&#x2F;hello&#x2F; 会处理 &#x2F;hello&#x2F;hello.css   最长匹配优先 如：&#x2F;hello&#x2F; 请求会匹配到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Http Pattern模式">
 <meta property="og:url" content="https://blog.liewyoung.top/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/index.html">
@@ -27,30 +48,62 @@
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
-                              <!-- canonical -->
-                              
-                                    <link rel="canonical"
-                                      href="https://blog.liewyoung.top/2026/02/11/Http-Pattern模式/">
-                                    
-                                      <!-- Favicon (已移除) -->
-                                      <!-- CSS -->
-                                      
+
+                                                          <!-- canonical -->
+                                                          
+                                                                <link rel="canonical"
+                                                                  href="https://blog.liewyoung.top/2026/02/11/Http-Pattern模式/">
+                                                                
+
+                                                                  <!-- RSS autodiscovery -->
+                                                                  <link rel="alternate" type="application/atom+xml"
+                                                                    title="Nonnika&#39;s Blog"
+                                                                    href="/atom.xml" />
+
+                                                                  <!-- SEO: JSON-LD 结构化数据 -->
+                                                                  
+                                                                    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Http Pattern模式",
+    "datePublished": "2026-02-11T18:12:37+08:00",
+    "dateModified": "2026-02-11T18:24:19+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Nonnika"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Nonnika&#39;s Blog"
+    },
+    "description": "Pattern  什么是 Pattern ？ 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。  规则和定义   固定 URL 路径 如：/hello 则只会处理 /hello 不会处理 /hello/   子树路径 如：/hello/ 会处理 /h",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://blog.liewyoung.top/2026/02/11/Http-Pattern模式/"
+    }
+  }
+  </script>
+                                                                    
+
+                                                                        <!-- Favicon (已移除) -->
+                                                                        <!-- CSS -->
+                                                                        
 <link rel="stylesheet" href="/css/reset.css">
 
-                                        
+                                                                          
 <link rel="stylesheet" href="/css/style.css">
 
-                                          
+                                                                            
 <link rel="stylesheet" href="/css/markdown.css">
 
-                                            
+                                                                              
 <link rel="stylesheet" href="/css/fonts.css">
 
-                                              
+                                                                                
 <link rel="stylesheet" href="/css/github.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nonnika's Blog" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
     <body>
         <div class="paper">
@@ -74,23 +127,17 @@
 </div>
 
                         
-                                    <div class="post-main">
+                                    <article class="post-main">
     
         <div class="post-main-title">
             Http Pattern模式
         </div>
         <div class="post-meta">
-            2026-02-11 ｜ 
+            <time datetime="2026-02-11">2026-02-11</time> ｜
             
                 <a href="/categories/Go/"># Go</a>
-            
+                
         </div>
-        <!-- 圆角分类 -->
-        <!-- <div class="tags"> -->
-            <!--  -->
-                <!-- <a href="/categories/Go/">Go</a> -->
-            <!--  -->
-        <!-- </div> -->
         <div class="post-md">
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery.js/1.0.1/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="pattern"><a class="markdownIt-Anchor" href="#pattern"></a> Pattern</h1>
 <h2 id="什么是-pattern"><a class="markdownIt-Anchor" href="#什么是-pattern"></a> 什么是 Pattern ？</h2>
@@ -121,17 +168,17 @@
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>
         </div>
-    
-<!-- tags -->
-
-    <div class="post-meta">
-        标签：
         
-            <a href="/tags/Go/"> / Go</a>
-        
-    </div>
-
-</div>
+                <!-- tags -->
+                
+                    <div class="post-meta">
+                        标签：
+                        
+                            <a href="/tags/Go/"> / Go</a>
+                            
+                    </div>
+                    
+</article>
                                         <div class="footer">
     <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
     <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>
