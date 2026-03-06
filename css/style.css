@@ -130,10 +130,10 @@ article.post-main {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #fff;
-    border-bottom: 4px solid #000;
+    background: #000;
+    border-bottom: 1px solid #333;
     margin-bottom: 40px;
-    padding: 10px 3vw 10px 3vw;
+    padding: 15px 3vw 15px 3vw;
     transition: box-shadow 0.25s, padding 0.25s, background 0.25s, border-color 0.25s;
     width: 100%;
     max-width: 1600px;
@@ -153,20 +153,16 @@ article.post-main {
 /* Scrolled: single row  [nav]  [LOGO]  [search] */
 .header.header-scrolled {
     background: #000;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     border-bottom-color: #333;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     margin-bottom: 40px;
     row-gap: 0;
     grid-template-areas: "nav logo search";
     grid-template-columns: 1fr auto 1fr;
-    padding: 10px 3vw;
+    padding: 12px 3vw;
 }
-
-.header-logo { grid-area: logo; }
-.header-search { grid-area: search; display: flex; align-items: center; }
-.header .nav { grid-area: nav; }
 
 .header.header-scrolled .header-logo {
     display: flex;
@@ -184,55 +180,936 @@ article.post-main {
     border: none;
     padding: 0;
 }
-.header.header-scrolled .nav li a { color: #fff; }
+.header.header-scrolled .nav li a { color: #ccc; }
 .header.header-scrolled .nav li a:hover { color: var(--font-color-0); }
-.header.header-scrolled .search-btn { color: #fff; }
+.header.header-scrolled .search-btn { color: #ccc; }
 
 .logo {
     font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.2;
     text-decoration: none !important;
     transition: font-size 0.25s, color 0.25s;
 }
 .logo:hover {
-    color: #000;
+    color: #fff;
     text-decoration: none;
 }
 
-/* Navigation - Ribbon Style */
-.nav {
+.header-logo {
+    grid-area: logo;
     display: flex;
-    border-top: 1px solid #000;
-    border-bottom: 1px solid #000;
-    padding: 10px 0;
+    flex-direction: column;
+}
+
+.header-search {
+    grid-area: search;
+    display: flex;
+    align-items: center;
+}
+
+.logo-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.85rem;
+    color: #aaa;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+/* Scrolled header adjustments */
+.header.header-scrolled .logo-subtitle {
+    display: none;
+}
+
+.header.header-scrolled .logo {
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+/* Navigation - Academic Style */
+.nav {
+    grid-area: nav;
+    display: flex;
+    border-top: none;
+    border-bottom: none;
+    padding: 0;
     list-style: none;
     margin: 0;
+    gap: 30px;
 }
 
 .nav li {
-    margin-right: 30px;
+    margin-right: 0;
 }
 
 .nav li a {
     font-family: Arial, sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    color: #333;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 0.95rem;
+    color: #ccc;
     text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
 }
 
 .nav li a:hover {
     color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
     text-decoration: none;
 }
 
-/* Post List - Card Grid */
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    gap: 25px;
+    padding: 25px 0;
+    align-items: start;
+}
+
+.pub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pub-date {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-category {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 3px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pub-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke-width: 2;
+}
+
+/* Responsive Academic Layout */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .pub-meta {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .pub-actions {
+        justify-content: flex-start;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* Academic Publications Layout */
+.academic-publications {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    letter-spacing: 0.05em;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    gap: 24px;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.pub-date {
+    display: block;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: block;
+    color: #999;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: lowercase;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--font-color-0);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--font-color-0);
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: var(--font-color-0);
+    color: #fff;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Responsive Academic Layout */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 12px;
+        align-items: baseline;
+    }
+    
+    .pub-date {
+        display: inline;
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        display: inline;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.6rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.05em;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    text-align: right;
+    padding-top: 4px;
+}
+
+.pub-date {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #777;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pub-actions {
+    padding-top: 4px;
+}
+
+.pub-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    border-color: #000;
+    color: #000;
+    background: #f9f9f9;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    opacity: 0.6;
+}
+
+/* Responsive Academic Style */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-actions {
+        padding-top: 0;
+    }
+    
+    .pub-link {
+        display: inline-flex;
+    }
+}
+
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.pub-date {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #555;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke-width: 1.5;
+}
+
+/* Academic Style Responsive */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        display: inline;
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        display: inline;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+}
+
+/* Post List - Card Grid (OLD - keeping for backwards compatibility) */
 .post-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -327,11 +1204,11 @@ article.post-main {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #fff;
+    background: #000;
     transition: box-shadow 0.25s, padding 0.25s;
     margin-bottom: 40px;
-    border-bottom: 1px solid #ddd;
-    padding: 6px 3vw;
+    border-bottom: 1px solid #333;
+    padding: 12px 3vw;
     width: 100%;
     max-width: 1600px;
     margin-left: auto;
@@ -343,25 +1220,24 @@ article.post-main {
 .post-header.header-scrolled {
     background: #000;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    border-bottom-color: #000;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    border-bottom-color: #333;
     padding: 8px 3vw;
-}
-.post-header.header-scrolled .logo {
-    color: #fff;
-}
-.post-header.header-scrolled .nav li a {
-    color: #fff;
-}
-.post-header.header-scrolled .nav li a:hover {
-    color: var(--font-color-0);
 }
 .post-header .logo {
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     white-space: nowrap;
+    color: #fff;
+}
+.post-header .logo:hover {
+    color: #fff;
+}
+.post-header .nav li a {
+    color: #ccc;
+}
+.post-header .nav li a:hover {
+    color: var(--font-color-0);
 }
 
 .post-main-title {
@@ -398,27 +1274,369 @@ article.post-main {
     border-color: #000;
 }
 
-/* Footer */
-.footer {
-    border-top: 4px solid #000;
-    margin-top: 60px;
-    padding: 40px 0;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #aaa;
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
     text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0 0 20px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.6;
+}
+
+.pub-date {
+    display: block;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--font-color-0);
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 8px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+    color: var(--font-color-0);
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    border-radius: 2px;
+    text-transform: lowercase;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+/* Responsive Academic Style */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 20px 3vw 40px;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        display: inline;
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        display: inline;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.6rem;
+    }
+}
+/* Footer - Academic Style */
+.footer {
+    border-top: 1px solid #333;
+    margin-top: 80px;
     background: #000;
     width: 100%;
     max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
-    padding: 40px 3vw;
 }
-.footer a {
-    color: #ccc;
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 50px 3vw 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.footer a:hover {
+
+.footer-section {
+    color: #aaa;
+}
+
+.footer-section:first-child {
+    padding-right: 40px;
+}
+
+.footer-title {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: #fff;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-institution {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+.footer-dept {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+}
+
+.footer-address {
+    font-size: 0.85rem;
+    color: #777;
+    font-style: normal;
+    line-height: 1.6;
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: #aaa;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.footer-links i {
+    font-size: 1rem;
+    color: #777;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding: 20px 3vw;
+    background: #111;
+}
+
+.footer-legal {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.footer-legal a {
+    color: #aaa;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.footer-legal a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.footer-divider {
+    margin: 0 10px;
+    color: #555;
+}
+
+.footer-tech {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+}
+
+.footer-tech a {
+    color: #888;
+    text-decoration: none;
+}
+
+.footer-tech a:hover {
+    color: var(--font-color-0);
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 3vw 30px;
+    }
+    
+    .footer-section:first-child {
+        grid-column: 1 / -1;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
 }
 
 /* Search */
@@ -426,7 +1644,7 @@ article.post-main {
     background: none;
     border: none;
     cursor: pointer;
-    color: #000;
+    color: #ccc;
     padding: 10px;
 }
 .search-overlay {
@@ -535,6 +1753,219 @@ article.post-main {
     text-align: center;
     color: #999;
     padding: 30px 0;
+}
+
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    border-bottom: 1px solid #eee;
+    padding: 24px 0;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 24px;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.pub-date {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    text-decoration: underline;
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #555;
+    margin-right: 8px;
+}
+
+.pub-tag::before {
+    content: "#";
+    color: #999;
+}
+
+.pub-abstract {
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke: currentColor;
+}
+
+/* Responsive Academic Layout */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.5rem;
+    }
+    
+    .pub-item {
+        padding: 18px 0;
+    }
 }
 
 /* Archive */
@@ -661,6 +2092,204 @@ article.post-main {
     text-decoration: none;
 }
 
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8px;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.1em;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.pub-date {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: block;
+    color: #999;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.65rem;
+    color: #777;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Academic Responsive */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+}
+
 /* Responsive: single column on mobile */
 @media (max-width: 600px) {
     .post-list {
@@ -677,5 +2306,2275 @@ article.post-main {
     }
     .page-content ul li a {
         word-break: break-all;
+    }
+}
+
+/* Academic Publications Style */
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.01em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 20px;
+    padding: 20px 0;
+    align-items: start;
+}
+
+.pub-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.pub-date {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #555;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke: currentColor;
+}
+
+/* Academic Style Responsive */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-title {
+        font-size: 2rem;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 100px 1fr;
+        gap: 15px;
+    }
+    
+    .pub-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding-top: 10px;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .pub-meta {
+        display: flex;
+        gap: 15px;
+        align-items: baseline;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - Homepage
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #999;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    text-align: right;
+    padding-top: 4px;
+}
+
+.pub-date {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.pub-category {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--font-color-0);
+    background: #fff5f5;
+    padding: 2px 8px;
+    border: 1px solid #ffdada;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    margin-right: 10px;
+    letter-spacing: 0.02em;
+}
+
+.pub-tag::before {
+    content: "#";
+    color: #ccc;
+    margin-right: 2px;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke-width: 1.5;
+}
+
+/* Academic style responsive */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .pub-date {
+        display: inline;
+        margin-bottom: 0;
+    }
+    
+    .pub-actions {
+        padding-top: 0;
+    }
+    
+    .pub-item-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - Homepage
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Year Section */
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #000;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    letter-spacing: -0.01em;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Publication Item */
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 25px;
+    padding: 25px 0;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+/* Meta Column */
+.pub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pub-date {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-category {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Content Column */
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    color: #777;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Actions Column */
+.pub-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--font-color-0);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: var(--font-color-0);
+    color: #fff;
+    border-color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.pub-link svg {
+    flex-shrink: 0;
+}
+
+/* Responsive Academic Layout */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.6rem;
+    }
+    
+    .pub-year {
+        font-size: 1.2rem;
+    }
+    
+    .pub-entry {
+        padding: 20px 0;
+    }
+    
+    .pub-meta {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .pub-actions {
+        justify-content: flex-start;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - 学术期刊风格
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+    font-variant: small-caps;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Year Section */
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Publication List */
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+/* Publication Entry */
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 25px;
+    padding: 25px 0;
+    align-items: start;
+}
+
+.pub-meta {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-date {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #D20000;
+    font-weight: 500;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: #D20000;
+    border-bottom-color: #D20000;
+}
+
+.pub-tags {
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.pub-actions {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke-width: 2;
+}
+
+/* Academic Header Override */
+.header-academic {
+    background: #fff;
+    border-bottom: 3px double #000;
+}
+
+.header-academic .logo {
+    font-variant: small-caps;
+    letter-spacing: 3px;
+}
+
+/* Responsive Academic */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 15px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 35px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px 0;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        display: inline;
+    }
+    
+    .pub-actions {
+        text-align: left;
+        padding-top: 5px;
+    }
+    
+    .pub-year {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pub-title {
+        font-size: 1.5rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1rem;
+    }
+    
+    .pub-abstract {
+        font-size: 0.85rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 20px;
+    align-items: start;
+}
+
+.pub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pub-date {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-category {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+    color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke: currentColor;
+}
+
+/* Academic Style Responsive */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .pub-meta {
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-actions {
+        justify-content: flex-start;
+    }
+    
+    .pub-header {
+        margin-bottom: 35px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+    
+    .pub-year {
+        font-size: 1.1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - 学术风格
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.01em;
+}
+
+.pub-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Year Section */
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Publication List */
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+/* Publication Entry */
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 25px;
+    padding: 25px 0;
+    align-items: start;
+}
+
+.pub-entry:hover {
+    background: #fafafa;
+}
+
+/* Meta Column */
+.pub-meta {
+    text-align: right;
+    padding-right: 15px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.pub-date {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-category {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Content Column */
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+    color: var(--font-color-0);
+}
+
+.pub-tags {
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+/* Actions Column */
+.pub-actions {
+    text-align: right;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    stroke: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px 0;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 10px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date,
+    .pub-category {
+        display: inline;
+        margin-bottom: 0;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.4rem;
+    }
+    
+    .pub-year {
+        font-size: 1.2rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - 学术风格
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr 80px;
+    gap: 0 25px;
+    align-items: start;
+}
+
+.pub-meta {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-date {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.pub-item-title a:hover {
+    border-bottom-color: var(--font-color-0);
+    color: var(--font-color-0);
+}
+
+.pub-tags {
+    margin-bottom: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #777;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    margin-right: 6px;
+    border-radius: 2px;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+    text-align: justify;
+}
+
+.pub-actions {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--font-color-0);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: var(--font-color-0);
+    color: #fff;
+    border-color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.pub-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Academic Responsive */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-header {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .pub-title {
+        font-size: 1.8rem;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 10px 0;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        margin-top: 0;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-item {
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pub-title {
+        font-size: 1.5rem;
+    }
+    
+    .pub-item-title {
+        font-size: 1.05rem;
+    }
+    
+    .pub-abstract {
+        font-size: 0.85rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - 学术期刊风格
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+    font-variant: small-caps;
+}
+
+.pub-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Year Section */
+.pub-year-section {
+    margin-bottom: 50px;
+}
+
+.pub-year {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Publication List */
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+/* Publication Entry */
+.pub-entry {
+    display: grid;
+    grid-template-columns: 100px 1fr 80px;
+    gap: 25px;
+    padding: 25px 0;
+    align-items: start;
+}
+
+.pub-meta {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-date {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-content {
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+}
+
+.pub-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #666;
+    background: #f5f5f5;
+    padding: 3px 8px;
+    border-radius: 2px;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+    font-style: italic;
+}
+
+.pub-actions {
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    transition: transform 0.2s;
+}
+
+.pub-link:hover svg {
+    transform: translateX(2px);
+}
+
+/* Responsive Academic Style */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 4vw 40px;
+    }
+    
+    .pub-title {
+        font-size: 1.6rem;
+    }
+    
+    .pub-entry {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px 0;
+    }
+    
+    .pub-meta {
+        text-align: left;
+        display: flex;
+        gap: 15px;
+        align-items: baseline;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        display: inline;
+    }
+    
+    .pub-actions {
+        text-align: left;
+    }
+    
+    .pub-year {
+        font-size: 1.2rem;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Academic Publications Style - 学术风格
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.academic-publications {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.pub-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.pub-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.02em;
+}
+
+.pub-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.pub-year-section {
+    margin-bottom: 40px;
+}
+
+.pub-year {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 20px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pub-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-entry {
+    display: flex;
+    gap: 20px;
+    padding: 24px 0;
+    align-items: flex-start;
+}
+
+.pub-meta {
+    flex-shrink: 0;
+    width: 120px;
+    text-align: right;
+    padding-top: 2px;
+}
+
+.pub-date {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.pub-category {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.pub-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+}
+
+.pub-item-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.pub-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.pub-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pub-abstract {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
+    font-size: 0.92rem;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.pub-actions {
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.pub-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.pub-link:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+    text-decoration: none;
+}
+
+.pub-link svg {
+    transition: stroke 0.2s;
+}
+
+/* Academic Responsive */
+@media (max-width: 768px) {
+    .academic-publications {
+        padding: 10px 0 40px;
+    }
+    
+    .pub-title {
+        font-size: 2rem;
+    }
+    
+    .pub-entry {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 0;
+    }
+    
+    .pub-meta {
+        width: auto;
+        text-align: left;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .pub-date {
+        margin-bottom: 0;
+    }
+    
+    .pub-category {
+        border-left: 1px solid #ddd;
+        padding-left: 12px;
+    }
+    
+    .pub-item-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pub-title {
+        font-size: 1.6rem;
+    }
+    
+    .pub-year {
+        font-size: 1.2rem;
+    }
+    
+    .pub-entry {
+        padding: 16px 0;
+    }
+}
+
+/* ── Card Grid Index Layout ── */
+.card-index {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+}
+
+.card-index-header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid #000;
+}
+
+.card-index-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+}
+
+.card-index-subtitle {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+.card-year-section {
+    margin-bottom: 48px;
+}
+
+.card-year-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 8px;
+    margin: 0 0 24px 0;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    background: #fff;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.card-item:hover {
+    border-color: #aaa;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
+    transform: translateY(-2px);
+}
+
+.card-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.card-item-date {
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+}
+
+.card-item-category {
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    color: var(--font-color-0);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+
+.card-item-title {
+    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0 0 10px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-item-title a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.card-item-title a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+    text-decoration: none;
+}
+
+.card-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.card-item-tag {
+    font-family: Arial, sans-serif;
+    font-size: 0.65rem;
+    color: #777;
+    background: #f5f5f5;
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+}
+
+.card-item-excerpt {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.875rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-item-read-more {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #333;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    transition: color 0.2s;
+}
+
+.card-item-read-more:hover {
+    color: var(--font-color-0);
+    text-decoration: none;
+}
+
+/* Responsive Card Grid */
+@media (max-width: 1200px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 860px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-index-title {
+        font-size: 1.6rem;
     }
 }
