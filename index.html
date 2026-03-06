@@ -49,7 +49,7 @@
 
                                                           <!-- canonical -->
                                                           
-                                                            <link rel="canonical" href="https://blog.liewyoung.top">
+                                                            <link rel="canonical" href="https://blog.liewyoung.top/">
                                                             
 
                                                                   <!-- RSS autodiscovery -->
@@ -95,21 +95,12 @@
 
     <body>
         <div class="paper">
-            <div class="paper-main">
-                
-                            <div class="header">
-    <div class="header-top">
+            
+                        <div class="header">
+    <div class="header-logo">
         <a class="logo" href="/">
             Nonnika&#39;s Blog
         </a>
-        <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
-        <button class="search-btn" onclick="openSearch()" title="搜索 (Ctrl+K)" aria-label="搜索">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-        </button>
     </div>
     <ul class="nav">
         
@@ -126,9 +117,19 @@
                 </a></li>
             
     </ul>
+    <div class="header-search">
+        <button class="search-btn" onclick="openSearch()" title="搜索 (Ctrl+K)" aria-label="搜索">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
 </div>
-                                
-                                    <div class="post-list">
+                            
+            <div class="paper-main">
+                <div class="post-list">
     
         <article class="post">
             <div class="post-card-body">
@@ -139,7 +140,7 @@
                 <div class="post-except">
                     什么是我呢？
 这个问题很有意思，因为我们好像从来没有真正回答过它，但又一直在被别人回答。
-你想想，从小到大，“我&quot;这个东西一直在被标准定义。成绩好就是&quot;优秀的我”，成绩差就是&quot;平庸的我&quot;。但我之前写过
+你想想，从小到大，&quot;我&quot;这个东西一直在被标准定义。成绩好就是&quot;优秀的我&quot;，成绩差就是&quot;平庸的我&qu
                 </div>
                 <a class="read-more" href="/2026/03/05/%E4%BB%8A%E6%97%A5%E6%84%9F%E6%82%9F/">阅读全文 →</a>
             </div>
@@ -152,13 +153,13 @@
                     Web结构:单体应用与解耦
                 </a>
                 <div class="post-except">
-                     Web结构:单体应用与解耦
- 前端：表现逻辑
+                    Web结构:单体应用与解耦
+前端：表现逻辑
 前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了）
- 后端：原始数据
+后端：原始数据
 后端作用就是处理原始数据，也包括应对前端的请求
- 单体架构
-数据和网页都在后端完成，不仅要处
+单体架构
+数据和网页都在后端完成，不仅要处理数据，
                 </div>
                 <a class="read-more" href="/2026/02/11/Web%E7%BB%93%E6%9E%84-%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E4%B8%8E%E8%A7%A3%E8%80%A6/">阅读全文 →</a>
             </div>
@@ -171,14 +172,14 @@
                     Http Pattern模式
                 </a>
                 <div class="post-except">
-                     Pattern
- 什么是 Pattern ？
+                    Pattern
+什么是 Pattern ？
 模式（pattern）是一个与 http请求匹配的 URL路径字符串。ServeMux使用模式来分配合适的处理函数。
- 规则和定义
+规则和定义
 
 
 固定 URL 路径
-如：/hello 则只会处理 /he
+如：/hello 则只会处理 /hello
                 </div>
                 <a class="read-more" href="/2026/02/11/Http-Pattern%E6%A8%A1%E5%BC%8F/">阅读全文 →</a>
             </div>
@@ -191,15 +192,16 @@
                     Linux 基本使用
                 </a>
                 <div class="post-except">
-                     Linux 基本使用
- 终端和 SHELL
+                    Linux 基本使用
+终端和 SHELL
 终端：渲染命令输入和输出
 SHELL：解释命令并输出
- 什么是 SHELL ？
+什么是 SHELL ？
 shell 就是一个命令解释器，他解释你的命令并输出。
- REPL 循环
+REPL 循环
 R : READ
 E : Evalute
+P :
                 </div>
                 <a class="read-more" href="/2026/02/08/Linux-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">阅读全文 →</a>
             </div>
@@ -212,12 +214,12 @@ E : Evalute
                     cURL基本使用
                 </a>
                 <div class="post-except">
-                     cURL 基本使用
+                    cURL 基本使用
 curl 是目前最流行、最强大的命令行网络工具之一，全称 Client URL（客户端 URL 工具）。
- 安装
+安装
 基本上不论 Windows 还是 Linux 都是预装的
- 基础
-1curl https://archl
+基础
+1curl https://archlinu
                 </div>
                 <a class="read-more" href="/2026/02/08/cURL%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">阅读全文 →</a>
             </div>
@@ -230,14 +232,14 @@ curl 是目前最流行、最强大的命令行网络工具之一，全称 Clien
                     Http方法
                 </a>
                 <div class="post-except">
-                     Http 方法
+                    Http 方法
 HTTP 定义了一组 方法 。每次我们发起 HTTP 请求时，都必须选择其中一个。最常见的方法包括：
 GET
 POST
 PUT
 DELETE
- GET 方法
-GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形
+GET 方法
+GET  方法用于获取服务器资源，它获取资源副本或者资源的表示形式。
                 </div>
                 <a class="read-more" href="/2026/02/08/Http%E6%96%B9%E6%B3%95/">阅读全文 →</a>
             </div>
@@ -250,12 +252,12 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
                     标准
                 </a>
                 <div class="post-except">
-                     标准
+                    标准
 很多事情都有标准……吗？就拿一个经典的作文题目来说吧：
 
 “在世界上，你认为什么东西是廉价的？什么东西是宝贵的？”
 
-这个作文题目好吗？好，非常好。为什么好？因为这就是在说标准这个东西，题目建立了一种假设每个都有一个标准，这个标准会
+这个作文题目好吗？好，非常好。为什么好？因为这就是在说标准这个东西，题目建立了一种假设每个都有一个标准，这个标准会把
                 </div>
                 <a class="read-more" href="/2026/02/05/%E6%A0%87%E5%87%86/">阅读全文 →</a>
             </div>
@@ -300,14 +302,14 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
                     依赖注入
                 </a>
                 <div class="post-except">
-                     依赖注入
- 依赖项
+                    依赖注入
+依赖项
 很多时候，类都需要其他类的对象才能正常运行。如果某个类需要另一个类，则所需的类称为依赖项。
- 依赖注入（ DI ）
+依赖注入（ DI ）
 依赖项注入是指在运行时提供依赖项，而不是将其硬编码到调用类中。
 实现依赖项注入：
 
-有助于提高代码的可
+有助于提高代码的可重用性
                 </div>
                 <a class="read-more" href="/2025/10/23/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">阅读全文 →</a>
             </div>
@@ -356,13 +358,11 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
 </div>
 
-                                        <div class="footer">
+            </div>
+            <div class="footer">
     <span>Copyright © <script>document.write(new Date().getFullYear())</script> Nonnika&#39;s Blog</span>
-    <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>Powered by <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> with <a target="_blank" rel="noopener" href="https://imzl.com/zenmind">ZenMind</a></span>
 </div>
-
-<link rel="stylesheet" href="/css/github.css">
-
 
 <script src="/js/highlight.min.js"></script>
 
@@ -375,7 +375,6 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
     // hljs.initLineNumbersOnLoad();
 </script>
 
-            </div>
         </div>
         <div class="search-overlay" id="searchOverlay">
     <div class="search-container">
@@ -395,7 +394,9 @@ GET  方法用于获取服务器资源，它获取资源副本或者资源的表
     </div>
 </div>
 
+            <script src="/js/scrollreveal.min.js"></script>
             <script src="/js/search.js"></script>
+            <script src="/js/main.js"></script>
     </body>
 
 </html>
