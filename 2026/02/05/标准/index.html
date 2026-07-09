@@ -45,7 +45,7 @@
 <meta property="og:description" content="标准 很多事情都有标准……吗？就拿一个经典的作文题目来说吧：  “在世界上，你认为什么东西是廉价的？什么东西是宝贵的？”  这个作文题目好吗？好，非常好。为什么好？因为这就是在说标准这个东西，题目建立了一种假设每个都有一个标准，这个标准会把东西划分成宝贵和廉价，同时每个人的标准可能不同。 这有两个问题：  标准客观吗？ 廉价和宝贵重要吗？  因为题目假设就是每个人都具有不同的标准这个标准自然是不标">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-05T08:30:05.000Z">
-<meta property="article:modified_time" content="2026-02-05T09:07:14.819Z">
+<meta property="article:modified_time" content="2026-02-05T09:07:14.810Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Thinking">
 <meta name="twitter:card" content="summary">
@@ -234,9 +234,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

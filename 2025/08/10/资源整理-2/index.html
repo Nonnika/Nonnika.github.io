@@ -45,7 +45,7 @@
 <meta property="og:description" content="Author：Liew.Y Date: 2025-03-26 16:35 Github Profile: LiewYoung   破山中贼易，破心中贼难。 -王阳明  前情提要 本次更新主抓可用性、及时性、高效性致力于提升大学生生活质量，将学生从枯燥无味的重复且无意义的劳作中解放出来。使得我们真正实现学习价值。同时结合大部分学生对电脑的掌握情况，不足一些常用软件。  日常多嘴 OOP也就是面向对象">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-10T15:53:38.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.350Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="资源整理">
 <meta name="twitter:card" content="summary">
@@ -279,9 +279,12 @@ As you can see! 一个类似编程扫盲的网站</p>
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

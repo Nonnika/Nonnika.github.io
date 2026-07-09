@@ -45,7 +45,7 @@
 <meta property="og:description" content="作者：Liew.Y 时间：2025-03-17 海绵的故事 在开始我们的故事之前，先认识一下主角——海绵（sponge）。它看似不起眼，却是地球上最古老的多细胞生物之一，化石可追溯到5.5亿年前的寒武纪。科学家在湖北宜昌发现的螺旋网格海绵化石，揭示了它作为原始动物的开端。古希腊人早就知道它，亚里士多德曾在书中记录它的用途，而希腊的KALYMNOS岛更以捕捞海绵闻名。300年前，那里的潜水员抱着15">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-14T12:00:33.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.350Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Nonnika">
 <meta property="article:tag" content="编程">
@@ -239,9 +239,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

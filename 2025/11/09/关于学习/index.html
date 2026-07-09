@@ -46,7 +46,7 @@
 <meta property="og:description" content="来自：Andy的观点  高效学习的深层逻辑：在无用之用、知行合一与认知共生中成长 近年来，“高效学习”成为热门话题，各类方法论层出不穷。然而，真正触及学习本质的路径，往往不在于技巧堆砌，而在于对学习本身的理解深度。有人提出一种看似“反效率”的高效学习观——强调疯狂阅读、创造作品、与善良高认知者交流。这一观点虽有其洞见，但也值得从哲学、科学、系统和实践四个层面深入剖析，并加以整合优化。  一、哲学">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-09T12:07:37.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:37:18.354Z">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.350Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Nonnika">
 <meta property="article:tag" content="编程">
@@ -257,9 +257,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

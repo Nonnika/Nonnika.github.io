@@ -189,6 +189,20 @@
     padding: 0;
 }
 
+/* Client-rendered Highlight.js blocks use the same line-number layout. */
+.post-md table.hljs-ln { width: 100%; border: none; margin: 0; }
+.post-md table.hljs-ln td { border: none; padding: 0; }
+.post-md .hljs-ln-numbers {
+    background: #f0f0f0;
+    border-right: 1px solid #ddd;
+    color: #aaa;
+    padding: 10px 12px;
+    text-align: right;
+    user-select: none;
+    vertical-align: top;
+}
+.post-md .hljs-ln-code { padding-left: 15px; }
+
 @media (min-width: 1800px) {
     .post-md {
         font-size: 18px;

@@ -45,7 +45,7 @@
 <meta property="og:description" content="什么是我呢？ 这个问题很有意思，因为我们好像从来没有真正回答过它，但又一直在被别人回答。 你想想，从小到大，&quot;我&quot;这个东西一直在被标准定义。成绩好就是&quot;优秀的我&quot;，成绩差就是&quot;平庸的我&quot;。但我之前写过一个东西——80%的人考90分和98%的人考99分，那个&quot;优秀&quot;和&quot;平庸&quot;的标签真的有意义吗？所以第">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-05T14:22:42.000Z">
-<meta property="article:modified_time" content="2026-03-05T14:28:51.893Z">
+<meta property="article:modified_time" content="2026-03-05T14:28:51.890Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Thinking">
 <meta name="twitter:card" content="summary">
@@ -231,9 +231,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

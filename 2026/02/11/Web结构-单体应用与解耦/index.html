@@ -45,7 +45,7 @@
 <meta property="og:description" content="Web结构:单体应用与解耦 前端：表现逻辑 前端的作用就是把数据处理成富有表现力的界面（当然我并不认为大多数国内前端做到了） 后端：原始数据 后端作用就是处理原始数据，也包括应对前端的请求 单体架构 数据和网页都在后端完成，不仅要处理数据，还要把网页渲染好。 解耦架构 后端只负责给出数据 前端只负责处理数据  if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-11T10:28:21.000Z">
-<meta property="article:modified_time" content="2026-02-11T11:40:56.791Z">
+<meta property="article:modified_time" content="2026-02-11T11:40:56.790Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
@@ -232,9 +232,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>

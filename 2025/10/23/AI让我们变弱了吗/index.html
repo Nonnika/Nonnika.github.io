@@ -45,7 +45,7 @@
 <meta property="og:description" content="辩题分析：AI时代，使人变得更强还是更弱了？ ​首先分析辩题，“AI”和“人类”是相当经典的科技进步与人类机能的关系。我们要从“强”和“弱”这两个方面来看，在矛盾中寻找统一的关系，最终得出观点。 ​先分析辩题涉及的范围“AI”。那我们要如何理解AI呢？首先，我们要明确一个问题，AI也就是artificial intelligence（人工智能）。人工智能并不局限于在课堂中同学一直分析的LLM（大型">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-23T12:04:17.000Z">
-<meta property="article:modified_time" content="2026-02-05T07:37:18.353Z">
+<meta property="article:modified_time" content="2026-02-05T07:37:18.350Z">
 <meta property="article:author" content="Nonnika">
 <meta property="article:tag" content="Nonnika">
 <meta property="article:tag" content="编程">
@@ -223,9 +223,12 @@
 <script src="/js/highlightjs-line-numbers.js"></script>
 
 <script>
-    // Hexo 已在服务端完成代码高亮，客户端不需要再次处理
-    // hljs.initHighlightingOnLoad();
-    // hljs.initLineNumbersOnLoad();
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.post-md pre > code:not(.hljs)').forEach(function (block) {
+            hljs.highlightElement(block);
+            hljs.lineNumbersBlock(block);
+        });
+    });
 </script>
 
         </div>
