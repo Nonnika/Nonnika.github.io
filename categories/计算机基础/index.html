@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     name="viewport" />
   <meta name="robots" content="index, follow">
 
@@ -83,6 +83,7 @@
 <link rel="stylesheet" href="/css/github.css">
 
 <meta name="generator" content="Hexo 7.3.0"></head>
+
 
     <body>
         <div class="paper">
@@ -211,7 +212,7 @@
 </script>
 
         </div>
-        <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="站内搜索" aria-hidden="true">
     <div class="search-container">
         <div class="search-header">
             <div class="search-input-wrap">
@@ -220,7 +221,7 @@
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
                 <input type="text" id="searchInput" class="search-input" placeholder="搜索文章标题或内容..." autocomplete="off" />
-                <kbd class="search-kbd" id="searchClose">Esc</kbd>
+                <button type="button" class="search-kbd" id="searchClose" aria-label="关闭搜索">Esc</button>
             </div>
         </div>
         <div class="search-results" id="searchResults">

@@ -7,6 +7,7 @@
     line-height: 1.9;
     font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", "Noto Serif SC", serif;
     color: #1a1a1a;
+    overflow-wrap: anywhere;
 }
 
 /* ── Headings ── */
@@ -28,15 +29,15 @@
     border-bottom: 1px solid #ccc;
     padding-bottom: 6px;
 }
-.post-md h3 { font-size: 1.25rem; font-style: italic; font-weight: 700; }
+.post-md h3 { font-size: 1.25rem; font-weight: 700; }
 .post-md h4 { font-size: 1.1rem; font-weight: 700; }
 
-/* ── Paragraphs: 首行缩进，齐行 ── */
+/* ── Paragraphs: 首行缩进，左对齐 ── */
 .post-md p {
     margin: 0;
     padding: 0;
     text-indent: 2em;
-    text-align: justify;
+    text-align: left;
     hyphens: auto;
     margin-bottom: 0.3em;
 }
@@ -67,7 +68,6 @@
     margin: 1.8em 3em;
     padding: 0;
     font-size: 0.95em;
-    font-style: italic;
     color: #444;
     border: none;
     border-top: 1px solid #ccc;
@@ -87,7 +87,6 @@
     margin-top: 0.5em;
     font-size: 0.88em;
     color: #555;
-    font-style: italic;
     text-align: center;
 }
 .post-md thead tr {
@@ -108,6 +107,7 @@
 /* ── Figures & Images ── */
 .post-md img {
     max-width: 100%;
+    height: auto;
     display: block;
     margin: 2em auto;
 }
@@ -118,7 +118,6 @@
 .post-md figcaption {
     font-size: 0.88em;
     color: #555;
-    font-style: italic;
     margin-top: 0.5em;
     text-align: center;
 }
@@ -170,8 +169,16 @@
     border-right: none;
     margin: 2em 0;
     border-radius: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
-.post-md figure.highlight table { border: none; margin: 0; }
+.post-md figure.highlight table {
+    width: max-content;
+    min-width: 100%;
+    border: none;
+    margin: 0;
+}
 .post-md figure.highlight td  { border: none; padding: 0; }
 .post-md figure.highlight .gutter {
     background: #f0f0f0;
@@ -206,5 +213,63 @@
 @media (min-width: 1800px) {
     .post-md {
         font-size: 18px;
+    }
+}
+
+.post-md > table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 600px) {
+    .post-md {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .post-md h1,
+    .post-md h2,
+    .post-md h3,
+    .post-md h4,
+    .post-md h5,
+    .post-md h6 {
+        scroll-margin-top: 118px;
+    }
+
+    .post-md h1 { font-size: 1.65rem; }
+    .post-md h2 { font-size: 1.35rem; }
+    .post-md h3 { font-size: 1.15rem; }
+
+    .post-md blockquote {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0.75em;
+        padding-right: 0.25em;
+        border-left: 3px solid #ccc;
+    }
+
+    .post-md ul,
+    .post-md ol {
+        margin-left: 0.5em;
+        padding-left: 1.25em;
+    }
+
+    .post-md pre {
+        margin-left: -16px;
+        margin-right: -16px;
+        padding: 1em 16px;
+    }
+
+    .post-md figure.highlight {
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+
+    .post-md th,
+    .post-md td {
+        padding: 0.45em 0.75em;
+        white-space: nowrap;
     }
 }

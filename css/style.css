@@ -12,7 +12,6 @@
 
 p {
     word-wrap: break-word;
-    white-space: pre-wrap;
 }
 
 body {
@@ -2058,11 +2057,10 @@ article.post-main {
 /* 页面中段落不需要首行缩进 */
 .page-content.post-md p {
     text-indent: 0;
-    text-align: center;
+    text-align: left;
     font-size: 1.15rem;
     color: var(--font-color-3);
     line-height: 1.8;
-    font-style: italic;
     margin: 1.5em 0;
 }
 
@@ -2152,7 +2150,7 @@ article.post-main {
     max-width: 560px;
     margin: 0 auto 18px;
     text-indent: 0;
-    text-align: center;
+    text-align: left;
     font-size: 1rem;
     font-style: normal;
     line-height: 1.85;
@@ -2161,7 +2159,6 @@ article.post-main {
 
 .page-content.post-md .about-card .about-card-lead {
     font-size: 1.25rem;
-    font-style: italic;
     color: #111;
 }
 
@@ -3975,7 +3972,7 @@ article.post-main {
     line-height: 1.6;
     color: #555;
     margin: 0;
-    text-align: justify;
+    text-align: left;
 }
 
 .pub-actions {
@@ -4854,5 +4851,177 @@ article.post-main {
 
     .page-body {
         max-width: 900px;
+    }
+}
+
+/* Mobile layout and touch targets */
+.paginator {
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.paginator a,
+.paginator span {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    margin: 0;
+    padding: 8px 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--font-color-0);
+    outline-offset: 3px;
+}
+
+.search-overlay {
+    min-height: 100dvh;
+}
+
+.search-kbd {
+    min-width: 44px;
+    min-height: 44px;
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+
+    .paper-main {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .header,
+    .header.header-scrolled {
+        grid-template-areas:
+            "logo search"
+            "nav nav";
+        grid-template-columns: minmax(0, 1fr) auto;
+        row-gap: 6px;
+        margin-bottom: 28px;
+        padding: 10px max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
+    }
+
+    .header.header-scrolled .header-logo {
+        justify-content: flex-start;
+    }
+
+    .header .logo,
+    .header.header-scrolled .logo {
+        font-size: 1.35rem;
+    }
+
+    .logo-subtitle {
+        display: none;
+    }
+
+    .header-search {
+        justify-content: flex-end;
+    }
+
+    .search-btn {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0 20px;
+    }
+
+    .nav li a {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+    }
+
+    .post-header,
+    .post-header.header-scrolled {
+        flex-wrap: wrap;
+        gap: 0 20px;
+        margin-bottom: 28px;
+        padding: 8px max(16px, env(safe-area-inset-right)) 4px max(16px, env(safe-area-inset-left));
+    }
+
+    .post-header .logo {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .post-header .nav {
+        flex-basis: 100%;
+    }
+
+    .post-main-title {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        margin-bottom: 1.35em;
+    }
+
+    .post-sidebar {
+        gap: 18px 28px;
+        margin-top: 32px;
+        padding-top: 20px;
+        text-align: left;
+    }
+
+    .search-overlay {
+        padding: max(16px, env(safe-area-inset-top)) 0 max(16px, env(safe-area-inset-bottom));
+    }
+
+    .search-container {
+        max-height: calc(100dvh - 32px);
+        margin: 0 12px;
+        padding: 16px;
+        overflow: hidden;
+    }
+
+    .search-input {
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    .search-results {
+        max-height: calc(100dvh - 130px);
+    }
+
+    .footer-content,
+    .footer-bottom {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .nav {
+        justify-content: space-between;
+        gap: 0 12px;
+    }
+
+    .nav li a {
+        font-size: 0.88rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

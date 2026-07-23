@@ -3,6 +3,7 @@
 
   let searchData = null;
   let isLoading = false;
+  let previousFocus = null;
 
   const overlay = document.getElementById('searchOverlay');
   const input = document.getElementById('searchInput');
@@ -11,7 +12,9 @@
 
   // Open search
   function openSearch() {
+    previousFocus = document.activeElement;
     overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     input.value = '';
     results.innerHTML = '<div class="search-empty">输入关键词开始搜索</div>';
@@ -24,7 +27,9 @@
   // Close search
   function closeSearch() {
     overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (previousFocus) previousFocus.focus();
   }
 
   // Load search.json
