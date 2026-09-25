@@ -16,6 +16,7 @@
     font-weight: 700;
     line-height: 1.3;
     margin: 2.4em 0 0.8em;
+    scroll-margin-top: 100px;
 }
 
 .post-md h1 {
@@ -23,12 +24,38 @@
     border-bottom: 2px solid #000;
     padding-bottom: 8px;
     margin-top: 0;
+    position: relative;
 }
+
+.post-md h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 64px;
+    height: 2px;
+    background: #D20000;
+}
+
 .post-md h2 {
     font-size: 1.5rem;
     border-bottom: 1px solid #ccc;
     padding-bottom: 6px;
+    position: relative;
 }
+
+.post-md h2::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 0.85em;
+    margin-right: 12px;
+    background: #D20000;
+    border-radius: 1px;
+    vertical-align: baseline;
+    transform: translateY(0.08em);
+}
+
 .post-md h3 { font-size: 1.25rem; font-weight: 700; }
 .post-md h4 { font-size: 1.1rem; font-weight: 700; }
 
@@ -60,19 +87,32 @@
     color: #D20000;
     text-decoration: underline;
     text-underline-offset: 2px;
+    text-decoration-color: rgba(210, 0, 0, 0.35);
+    transition: text-decoration-color 0.2s, color 0.2s;
 }
-.post-md a:hover { color: #000; }
+.post-md a:hover {
+    color: #000;
+    text-decoration-color: #000;
+}
 
-/* ── Blockquote: 学术引用风格 ── */
+/* ── Blockquote: 学术引用风格（上下细线 + 浅底）── */
 .post-md blockquote {
     margin: 1.8em 3em;
-    padding: 0;
+    padding: 0.8em 1.2em;
     font-size: 0.95em;
     color: #444;
+    background: #fafafa;
     border: none;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    padding: 0.8em 0;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.post-md blockquote:hover {
+    background: #f5f5f5;
+    border-top-color: #D20000;
+    border-bottom-color: #D20000;
 }
 
 /* ── Tables: booktabs 风格（只有横线）── */
@@ -93,6 +133,16 @@
     border-top: 2px solid #000;
     border-bottom: 1px solid #000;
 }
+.post-md thead th {
+    font-weight: 700;
+}
+.post-md tbody tr {
+    border-bottom: 1px solid #e8e8e8;
+    transition: background 0.15s;
+}
+.post-md tbody tr:hover {
+    background: #fafafa;
+}
 .post-md tbody tr:last-child {
     border-bottom: 2px solid #000;
 }
@@ -102,7 +152,6 @@
     text-align: left;
     vertical-align: top;
 }
-.post-md th { font-weight: 700; }
 
 /* ── Figures & Images ── */
 .post-md img {
@@ -110,6 +159,11 @@
     height: auto;
     display: block;
     margin: 2em auto;
+    border-radius: 6px;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+.post-md img:hover {
+    box-shadow: 0 10px 36px rgba(0, 0, 0, 0.14);
 }
 .post-md figure {
     margin: 2em 0;
@@ -131,15 +185,23 @@
     margin-bottom: 0.4em;
     line-height: 1.8;
 }
+.post-md ul li::marker {
+    color: #D20000;
+}
+.post-md ol li::marker {
+    color: #D20000;
+    font-weight: 700;
+}
 
 /* ── Inline Code ── */
 .post-md code {
-    font-family: "Courier New", Courier, monospace;
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", Courier, monospace;
+    background: #f4f4f4;
+    border: 1px solid #e4e4e4;
     padding: 0.1em 0.4em;
     font-size: 0.88em;
-    border-radius: 2px;
+    border-radius: 3px;
+    color: #c7254e;
 }
 
 /* ── Code Blocks ── */
@@ -147,31 +209,33 @@
     background: #fafafa;
     padding: 1.2em 1.5em;
     overflow-x: auto;
+    border: 1px solid #e4e4e4;
     border-top: 2px solid #000;
-    border-bottom: 1px solid #ccc;
+    border-radius: 0 0 6px 6px;
     margin: 2em 0;
     font-size: 0.88em;
     line-height: 1.6;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 .post-md pre code {
     background: none;
     border: none;
     padding: 0;
     font-size: inherit;
+    color: inherit;
 }
 
 /* ── Highlight.js overrides ── */
 .post-md figure.highlight {
     background: #fafafa;
+    border: 1px solid #e4e4e4;
     border-top: 2px solid #000;
-    border-bottom: 1px solid #ccc;
-    border-left: none;
-    border-right: none;
+    border-radius: 0 0 6px 6px;
     margin: 2em 0;
-    border-radius: 0;
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 .post-md figure.highlight table {
     width: max-content;
@@ -179,19 +243,21 @@
     border: none;
     margin: 0;
 }
-.post-md figure.highlight td  { border: none; padding: 0; }
+.post-md figure.highlight td { border: none; padding: 0; }
 .post-md figure.highlight .gutter {
     background: #f0f0f0;
     border-right: 1px solid #ddd;
     padding: 10px 12px;
     text-align: right;
-    color: #aaa;
+    color: #b0b0b0;
     font-size: 0.85em;
+    user-select: none;
 }
 .post-md figure.highlight .code { padding: 10px 15px; background: #fafafa; }
 .post-md figure.highlight .code pre {
     background: transparent;
     border: none;
+    box-shadow: none;
     margin: 0;
     padding: 0;
 }
@@ -202,7 +268,7 @@
 .post-md .hljs-ln-numbers {
     background: #f0f0f0;
     border-right: 1px solid #ddd;
-    color: #aaa;
+    color: #b0b0b0;
     padding: 10px 12px;
     text-align: right;
     user-select: none;
@@ -248,6 +314,9 @@
         padding-left: 0.75em;
         padding-right: 0.25em;
         border-left: 3px solid #ccc;
+        border-top: none;
+        border-bottom: none;
+        border-radius: 0;
     }
 
     .post-md ul,
@@ -260,16 +329,22 @@
         margin-left: -16px;
         margin-right: -16px;
         padding: 1em 16px;
+        border-radius: 0;
     }
 
     .post-md figure.highlight {
         margin-left: -16px;
         margin-right: -16px;
+        border-radius: 0;
     }
 
     .post-md th,
     .post-md td {
         padding: 0.45em 0.75em;
         white-space: nowrap;
+    }
+
+    .post-md img {
+        border-radius: 4px;
     }
 }

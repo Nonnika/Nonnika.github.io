@@ -11,44 +11,96 @@
     }, { passive: true });
 })();
 
-/*===== MENU SHOW =====*/
-/* Validate if constant exists */
-const navToggle = document.getElementById('nav-toggle')
-const navClose = document.getElementById('nav-close')
-const navMenu = document.getElementById('nav-menu')
+/*=============== 入场动画（IntersectionObserver 渐进增强） ===============*/
+(function () {
+    const targets = document.querySelectorAll(
+        '.card-item, .card-year-section, .card-index-header, ' +
+        '.archive-list li, .post-main-title, .page-title, .page-body, ' +
+        'article.post-main, .paginator'
+    );
+    if (!targets.length) return;
 
-if(navToggle){
-    navToggle.addEventListener('click', () =>{
-        if (navMenu) navMenu.classList.add('show-menu')
-    })
-}
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) return;
 
-/*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
-if(navClose){
-    navClose.addEventListener('click', () =>{
-        if (navMenu) navMenu.classList.remove('show-menu')
-    })
-}
+    // 视口内的元素加上级联延迟后立即显示，视口外的进入时再显示
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            const siblings = entry.target.parentElement ?
+                Array.from(entry.target.parentElement.children).filter(function (el) {
+                    return el.classList.contains('reveal');
+                }) : [];
+            const index = Math.max(0, siblings.indexOf(entry.target));
+            entry.target.style.setProperty('--reveal-delay', (Math.min(index, 7) * 0.07) + 's');
+            entry.target.classList.add('reveal-in');
+            observer.unobserve(entry.target);
+        });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
 
-/*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelectorAll('.nav__link')
+    const viewportH = window.innerHeight;
+    targets.forEach(function (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewportH) return; // 首屏内不做隐藏，避免闪烁
+        el.classList.add('reveal');
+        observer.observe(el);
+    });
+})();
 
-function linkAction(){
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    if (navMenu) navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
+/*=============== 阅读进度条（仅文章页） ===============*/
+(function () {
+    const isPost = document.querySelector('.post-main-title');
+    if (!isPost) return;
 
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-if (typeof ScrollReveal !== 'undefined') {
-    const sr = ScrollReveal({
-        distance: '90px',
-        duration: 3000,
-    })
+    const bar = document.createElement('div');
+    bar.className = 'reading-progress';
+    bar.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(bar);
 
-    sr.reveal(`.home__data`, {origin: 'top', delay: 400})
-    sr.reveal(`.home__img`, {origin: 'bottom', delay: 600})
-    sr.reveal(`.home__footer`, {origin: 'bottom', delay: 800})
-}
+    let ticking = false;
+    function update() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        const progress = max > 0 ? doc.scrollTop / max : 0;
+        bar.style.transform = 'scaleX(' + progress + ')';
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
+    update();
+})();
+
+/*=============== 返回顶部 ===============*/
+(function () {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '返回顶部');
+    btn.title = '返回顶部';
+    btn.innerHTML =
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+        'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+        '<polyline points="18 15 12 9 6 15"></polyline></svg>';
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    let ticking = false;
+    function update() {
+        btn.classList.toggle('visible', window.scrollY > 600);
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(update);
+        }
+    }, { passive: true });
+    update();
+})();

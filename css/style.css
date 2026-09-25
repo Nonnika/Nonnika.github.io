@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+/* ═══════════════════════════════════════════════════════════════════
+   ZenMind — 学术期刊风格主题
+   结构：变量与基础 → 骨架布局 → Header → 首页卡片 → 归档
+        → 文章页 → 通用页面 → 分页 → 页脚 → 搜索 → 浮动组件
+        → 宽屏适配 → 移动端 → 动效偏好
+   ═══════════════════════════════════════════════════════════════════ */
+
 :root {
     --font-color-0: #D20000; /* Nature Red */
     --font-color-1: #111;
@@ -8,134 +15,111 @@
     --bg-color-1: #f8f8f8;
     --line-1: #ddd;
     --line-2: #eee;
+    --serif: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", "Noto Serif SC", serif;
+    --sans: Arial, "Helvetica Neue", sans-serif;
+    --red-soft: #fff5f5;
+    --red-line: #ffdada;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 6px 24px rgba(0, 0, 0, 0.06);
+    --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.05), 0 14px 40px rgba(0, 0, 0, 0.12);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* ── 基础 ── */
 
 p {
     word-wrap: break-word;
 }
 
 body {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", "Noto Serif SC", serif;
+    font-family: var(--serif);
     font-size: 17px;
     line-height: 1.6;
     color: var(--font-color-2);
     background: #fff;
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
     text-decoration: none;
     color: var(--font-color-0);
 }
+
 a:hover {
     text-decoration: underline;
 }
 
-.paper-main {
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 3vw 40px 3vw;
+::selection {
+    background: var(--font-color-0);
+    color: #fff;
+}
+
+/* 细滚动条（WebKit） */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #c8c8c8;
+    border-radius: 5px;
+    border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--font-color-0);
+    outline-offset: 3px;
+}
+
+/* ── 骨架布局 ── */
+
+.paper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: #fff;
 }
 
-/* Article content: keep readable width centered */
-article.post-main {
-    max-width: 1100px;
+.paper-main {
+    width: 100%;
+    flex: 1 0 auto;
+    max-width: none;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 0 60px;
-    align-items: start;
+    padding: 0 clamp(20px, 4vw, 96px) clamp(48px, 5vw, 96px);
+    background: #fff;
 }
 
-.post-article-body {
-    min-width: 0; /* prevent overflow */
+body {
+    overflow-x: hidden;
 }
 
-/* Sidebar */
-.post-sidebar {
-    position: sticky;
-    top: 40px;
-    padding-top: 4px;
-    border-right: 1px solid #ddd;
-    padding-right: 28px;
-    text-align: right;
-}
-
-.sidebar-block {
-    margin-bottom: 28px;
-}
-
-.sidebar-label {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #999;
-    margin-bottom: 6px;
-}
-
-.sidebar-value {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
-    font-size: 0.88rem;
-    color: #333;
-    line-height: 1.6;
-}
-
-.sidebar-value a {
-    display: block;
-    color: #333;
-    text-decoration: none;
-}
-.sidebar-value a:hover { color: var(--font-color-0); }
-
-.sidebar-tags a {
-    display: inline-block;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    font-size: 0.82rem;
-    color: #555;
-    border: 1px solid #ddd;
-    padding: 1px 8px;
-}
-.sidebar-tags a:hover {
-    border-color: var(--font-color-0);
-    color: var(--font-color-0);
-}
-
-/* Collapse to single column on small screens */
-@media (max-width: 900px) {
-    article.post-main {
-        grid-template-columns: 1fr;
-    }
-    .post-sidebar {
-        position: static;
-        border-left: none;
-        border-top: 1px solid #ddd;
-        padding-left: 0;
-        padding-top: 24px;
-        margin-top: 40px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px 40px;
-    }
-    .sidebar-block { margin-bottom: 0; }
-}
+/* ── Header ── */
 
 .header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #000;
+    background: rgba(0, 0, 0, 0.96);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid #333;
     margin-bottom: 40px;
-    padding: 15px 3vw 15px 3vw;
+    padding: 15px clamp(20px, 4vw, 96px);
     transition: box-shadow 0.25s, padding 0.25s, background 0.25s, border-color 0.25s;
     width: 100%;
-    max-width: 1600px;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
 
@@ -151,16 +135,16 @@ article.post-main {
 
 /* Scrolled: single row  [nav]  [LOGO]  [search] */
 .header.header-scrolled {
-    background: #000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    border-bottom-color: #333;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    margin-bottom: 40px;
+    background: rgba(0, 0, 0, 0.88);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    border-bottom-color: #2a2a2a;
     row-gap: 0;
     grid-template-areas: "nav logo search";
     grid-template-columns: 1fr auto 1fr;
-    padding: 12px 3vw;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 .header.header-scrolled .header-logo {
@@ -183,8 +167,12 @@ article.post-main {
 .header.header-scrolled .nav li a:hover { color: var(--font-color-0); }
 .header.header-scrolled .search-btn { color: #ccc; }
 
+.header.header-scrolled .logo-subtitle {
+    display: none;
+}
+
 .logo {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
+    font-family: var(--serif);
     font-size: 2.2rem;
     font-weight: 700;
     color: #fff;
@@ -192,11 +180,12 @@ article.post-main {
     letter-spacing: 0;
     line-height: 1.2;
     text-decoration: none !important;
-    transition: font-size 0.25s, color 0.25s;
+    transition: font-size 0.25s, color 0.25s, opacity 0.2s;
 }
 .logo:hover {
     color: #fff;
     text-decoration: none;
+    opacity: 0.88;
 }
 
 .header-logo {
@@ -219,17 +208,7 @@ article.post-main {
     margin-top: 2px;
 }
 
-/* Scrolled header adjustments */
-.header.header-scrolled .logo-subtitle {
-    display: none;
-}
-
-.header.header-scrolled .logo {
-    font-size: 1.4rem;
-    color: #fff;
-}
-
-/* Navigation - Academic Style */
+/* 导航：下划线由中间展开 */
 .nav {
     grid-area: nav;
     display: flex;
@@ -246,970 +225,53 @@ article.post-main {
 }
 
 .nav li a {
-    font-family: Arial, sans-serif;
+    position: relative;
+    font-family: var(--sans);
     font-weight: 500;
     text-transform: none;
     font-size: 0.95rem;
     color: #ccc;
     text-decoration: none;
     padding: 5px 0;
-    border-bottom: 2px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
+    transition: color 0.2s;
+}
+
+.nav li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--font-color-0);
+    transform: translateX(-50%);
+    transition: width 0.25s var(--ease-out);
 }
 
 .nav li a:hover {
     color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
     text-decoration: none;
 }
 
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
+.nav li a:hover::after {
+    width: 100%;
 }
 
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 25px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 140px 1fr 80px;
-    gap: 25px;
-    padding: 25px 0;
-    align-items: start;
-}
-
-.pub-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.pub-date {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-category {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 12px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 3px 10px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.pub-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 8px 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke-width: 2;
-}
-
-/* Responsive Academic Layout */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .pub-meta {
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .pub-actions {
-        justify-content: flex-start;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-}
-
-/* Academic Publications Layout */
-.academic-publications {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-    letter-spacing: 0.05em;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 140px 1fr 80px;
-    gap: 24px;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #666;
-    line-height: 1.6;
-}
-
-.pub-date {
-    display: block;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: block;
-    color: #999;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #000;
-    margin: 0 0 10px 0;
-    line-height: 1.4;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-    text-decoration: none;
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 2px;
-    text-transform: lowercase;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    text-align: right;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--font-color-0);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid var(--font-color-0);
-    border-radius: 2px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: var(--font-color-0);
-    color: #fff;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Responsive Academic Layout */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 12px;
-        align-items: baseline;
-    }
-    
-    .pub-date {
-        display: inline;
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        display: inline;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-title {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.6rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-}
-
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #000;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin: 0 0 20px 0;
-    letter-spacing: 0.05em;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 80px 1fr 60px;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    text-align: right;
-    padding-top: 4px;
-}
-
-.pub-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #777;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-    letter-spacing: 0.02em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.pub-actions {
-    padding-top: 4px;
-}
-
-.pub-link {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    padding: 6px 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    border-color: #000;
-    color: #000;
-    background: #f9f9f9;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    opacity: 0.6;
-}
-
-/* Responsive Academic Style */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-actions {
-        padding-top: 0;
-    }
-    
-    .pub-link {
-        display: inline-flex;
-    }
-}
-
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #000;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin: 0 0 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-    padding: 20px 0;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 120px 1fr 80px;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #666;
-    line-height: 1.6;
-}
-
-.pub-date {
-    display: block;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: block;
-    font-size: 0.75rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #555;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.92rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.pub-actions {
-    text-align: right;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke-width: 1.5;
-}
-
-/* Academic Style Responsive */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        display: inline;
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        display: inline;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-}
-
-/* Post List - Card Grid (OLD - keeping for backwards compatibility) */
-.post-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 50px;
-}
-
-.post {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
-    padding: 0;
-    background: #fff;
-    transition: box-shadow 0.2s, border-color 0.2s;
-}
-
-.post:hover {
-    border-color: #aaa;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-
-.post:first-child {
-    padding-top: 0;
-}
-
-.post-card-body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding: 22px 24px 18px;
-}
-
-.post-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    color: #999;
-    font-weight: bold;
-    letter-spacing: 0.05em;
-    margin-bottom: 10px;
-}
-
-.post-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #000;
-    margin-bottom: 12px;
-    line-height: 1.4;
-    word-break: break-word;
-}
-.post-title:hover {
-    color: var(--font-color-0);
-    text-decoration: none;
-}
-
-.post-except {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
-    color: #555;
-    font-size: 0.92rem;
-    line-height: 1.65;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    word-break: break-word;
-}
-
-.read-more {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: var(--font-color-0);
-    display: inline-block;
-    margin-top: 16px;
-    letter-spacing: 0.04em;
-    border-top: 1px solid #eee;
-    padding-top: 14px;
-}
-.read-more:hover {
-    text-decoration: underline;
-}
+/* ── 文章页 Header ── */
 
 .post-header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #000;
-    transition: box-shadow 0.25s, padding 0.25s;
+    background: rgba(0, 0, 0, 0.96);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    transition: box-shadow 0.25s, padding 0.25s, background 0.25s;
     margin-bottom: 40px;
     border-bottom: 1px solid #333;
-    padding: 12px 3vw;
+    padding: 12px clamp(20px, 4vw, 96px);
     width: 100%;
-    max-width: 1600px;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -1217,10 +279,12 @@ article.post-main {
     gap: 2rem;
 }
 .post-header.header-scrolled {
-    background: #000;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    border-bottom-color: #333;
-    padding: 8px 3vw;
+    background: rgba(0, 0, 0, 0.88);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+    border-bottom-color: #2a2a2a;
+    padding: 8px clamp(20px, 4vw, 96px);
 }
 .post-header .logo {
     font-size: 1rem;
@@ -1239,56 +303,39 @@ article.post-main {
     color: var(--font-color-0);
 }
 
-.post-main-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 2em 0;
-    line-height: 1.25;
-    letter-spacing: 0.01em;
-    border-bottom: 2px solid #000;
-    padding-bottom: 16px;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   首页 — 卡片网格
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* Paginator */
-.paginator {
-    margin-top: 50px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-}
-.paginator a, .paginator span {
-    display: inline-block;
-    padding: 8px 15px;
-    border: 1px solid #ddd;
-    margin: 0 5px;
-    color: #333;
-    text-decoration: none;
-}
-.paginator .current {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-}
-
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
+.card-index {
+    width: 100%;
+    max-width: min(1800px, 100%);
     margin: 0 auto;
     padding: 20px 0 60px;
 }
 
-.pub-header {
+.card-index-header {
     text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
     border-bottom: 2px solid #000;
+    position: relative;
 }
 
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
+.card-index-header::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 2px;
+    background: var(--font-color-0);
+    transition: width 0.4s var(--ease-out);
+}
+
+.card-index-title {
+    font-family: var(--serif);
     font-size: 2.2rem;
     font-weight: 700;
     color: #000;
@@ -1296,7 +343,7 @@ article.post-main {
     letter-spacing: -0.02em;
 }
 
-.pub-subtitle {
+.card-index-subtitle {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 1rem;
     color: #666;
@@ -1304,697 +351,379 @@ article.post-main {
     margin: 0;
 }
 
-.pub-year-section {
-    margin-bottom: 40px;
+.card-year-section {
+    margin-bottom: 48px;
 }
 
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
+.card-year-label {
+    font-family: var(--sans);
+    font-size: 0.85rem;
     font-weight: 700;
     color: #000;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    margin: 0 0 20px 0;
-    padding: 8px 0;
     border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #888;
-    line-height: 1.6;
-}
-
-.pub-date {
-    display: block;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--font-color-0);
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 8px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-    color: var(--font-color-0);
-}
-
-.pub-tags {
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    border-radius: 2px;
-    text-transform: lowercase;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    text-align: right;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-/* Responsive Academic Style */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 20px 3vw 40px;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        display: inline;
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        display: inline;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-header {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.6rem;
-    }
-}
-/* Footer - Academic Style */
-.footer {
-    border-top: 1px solid #333;
-    margin-top: 80px;
-    background: #000;
-    width: 100%;
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    padding: 50px 3vw 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer-section {
-    color: #aaa;
-}
-
-.footer-section:first-child {
-    padding-right: 40px;
-}
-
-.footer-title {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #fff;
-    margin: 0 0 16px 0;
     padding-bottom: 8px;
-    border-bottom: 1px solid #333;
+    margin: 0 0 24px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
 }
 
-.footer-institution {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    margin: 0 0 8px 0;
+.card-year-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #ddd, transparent);
+    align-self: center;
 }
 
-.footer-dept {
-    font-size: 0.9rem;
-    color: #aaa;
-    margin: 0 0 12px 0;
-    line-height: 1.6;
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(20px, 1.6vw, 32px);
 }
 
-.footer-address {
-    font-size: 0.85rem;
-    color: #777;
-    font-style: normal;
-    line-height: 1.6;
+.card-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 22px 20px 18px;
+    background: #fff;
+    transition: box-shadow 0.3s var(--ease-out), border-color 0.3s, transform 0.3s var(--ease-out);
+    overflow: hidden;
 }
 
-.footer-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+/* 顶部红色强调线：hover 时从左侧展开 */
+.card-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--font-color-0);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease-out);
 }
 
-.footer-links li {
-    margin-bottom: 8px;
+.card-item:hover {
+    border-color: #ccc;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-3px);
 }
 
-.footer-links a {
-    font-size: 0.9rem;
-    color: #aaa;
-    text-decoration: none;
+.card-item:hover::before {
+    transform: scaleX(1);
+}
+
+.card-item-meta {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.card-item-date {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+}
+
+.card-item-category {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    color: var(--font-color-0);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+
+.card-item-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.45;
+    margin: 0 0 12px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-item-title a {
+    color: #000;
+    text-decoration: none;
     transition: color 0.2s;
 }
 
-.footer-links a:hover {
+.card-item-title a:hover {
     color: var(--font-color-0);
     text-decoration: none;
 }
 
-.footer-links i {
-    font-size: 1rem;
+.card-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.card-item-tag {
+    font-family: var(--sans);
+    font-size: 0.65rem;
     color: #777;
+    background: #f5f5f5;
+    padding: 2px 7px;
+    border-radius: 2px;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, color 0.2s;
 }
 
-.footer-bottom {
-    border-top: 1px solid #333;
-    padding: 20px 3vw;
-    background: #111;
-}
-
-.footer-legal {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #888;
-    text-align: center;
-    margin-bottom: 6px;
-}
-
-.footer-legal a {
-    color: #aaa;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.footer-legal a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.footer-divider {
-    margin: 0 10px;
-    color: #555;
-}
-
-.footer-tech {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #666;
-    text-align: center;
-}
-
-.footer-tech a {
-    color: #888;
-    text-decoration: none;
-}
-
-.footer-tech a:hover {
+.card-item:hover .card-item-tag {
+    background: var(--red-soft);
     color: var(--font-color-0);
 }
 
-/* Responsive Footer */
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
-        padding: 35px 3vw 30px;
-    }
-    
-    .footer-section:first-child {
-        grid-column: 1 / -1;
-        padding-right: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-}
-
-/* Search */
-.search-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #ccc;
-    padding: 10px;
-}
-.search-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2000;
-    background: rgba(255, 255, 255, 0.95);
-    display: none;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 100px;
-}
-
-.search-overlay.active {
-    display: flex;
-}
-
-.search-container {
-    width: 100%;
-    max-width: 700px;
-    background: #fff;
-    box-shadow: 0 0 0 1px #ddd;
-    border-radius: 0;
-    margin: 0 20px;
-    padding: 20px;
-}
-
-.search-header {
-    margin-bottom: 20px;
-}
-
-.search-input-wrap {
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #000;
-    padding-bottom: 5px;
-}
-
-.search-icon-input {
-    margin-right: 10px;
+.card-item-excerpt {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.875rem;
     color: #666;
-}
-
-.search-input {
+    line-height: 1.6;
+    margin: 0 0 14px 0;
     flex: 1;
-    border: none;
-    outline: none;
-    font-size: 1.2rem;
-    font-family: inherit;
-    background: transparent;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.search-kbd {
-    font-family: monospace;
-    font-size: 0.8rem;
-    color: #999;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 2px 6px;
-    cursor: pointer;
-}
-
-.search-results {
-    max-height: 60vh;
-    overflow-y: auto;
-}
-
-.search-result-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.search-result-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.search-result-item a {
-    display: block;
-    text-decoration: none;
-}
-
-.search-result-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #000;
-    margin-bottom: 5px;
-}
-
-.search-result-snippet {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-}
-
-.search-highlight {
-    background: #ffecb3;
-    padding: 0 2px;
-}
-
-.search-empty {
-    text-align: center;
-    color: #999;
-    padding: 30px 0;
-}
-
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 2.5rem;
+.card-item-read-more {
+    font-family: var(--sans);
+    font-size: 0.72rem;
     font-weight: 700;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    border-bottom: 1px solid #eee;
-    padding: 24px 0;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 120px 1fr 80px;
-    gap: 24px;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.85rem;
-    color: #666;
-}
-
-.pub-date {
-    display: block;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: inline-block;
-    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: #888;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 2px;
+    color: #333;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+    transition: color 0.2s;
 }
 
-.pub-content {
+.card-item-read-more:hover {
+    color: var(--font-color-0);
+    text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   归档页
+   ═══════════════════════════════════════════════════════════════════ */
+
+.archive-list {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 10px 0 60px;
+}
+
+.archive {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.archive li {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    border-bottom: 1px solid #eee;
+    padding: 16px 8px;
+    margin: 0;
+    transition: background 0.2s;
+    border-radius: 4px;
+}
+
+.archive li:hover {
+    background: #fafafa;
+}
+
+.archive-date {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #999;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.archive-main {
     min-width: 0;
 }
 
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.15rem;
+.archive-title {
+    font-family: var(--serif);
+    font-size: 1.08rem;
     font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
+    color: #000;
+    display: inline-block;
+    margin: 0;
+    line-height: 1.5;
+    transition: color 0.2s;
 }
 
-.pub-item-title a {
-    color: #000;
+.archive-title:hover {
+    color: var(--font-color-0);
     text-decoration: none;
 }
 
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    text-decoration: underline;
+@media (max-width: 600px) {
+    .archive li {
+        flex-direction: column;
+        gap: 4px;
+    }
 }
 
-.pub-tags {
-    margin-bottom: 10px;
+/* ═══════════════════════════════════════════════════════════════════
+   文章页
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Article content: keep readable width centered */
+article.post-main {
+    width: 100%;
+    max-width: min(1320px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0 clamp(40px, 4vw, 96px);
+    align-items: start;
 }
 
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #555;
-    margin-right: 8px;
+.post-article-body {
+    min-width: 0; /* prevent overflow */
+    max-width: 900px;
 }
 
-.pub-tag::before {
-    content: "#";
-    color: #999;
-}
-
-.pub-abstract {
-    font-family: Georgia, serif;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #555;
-    margin: 0;
-}
-
-.pub-actions {
+/* Sidebar */
+.post-sidebar {
+    position: sticky;
+    top: 88px;
+    padding-top: 4px;
+    border-right: 1px solid #ddd;
+    padding-right: 28px;
     text-align: right;
 }
 
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
+.sidebar-block {
+    margin-bottom: 28px;
+}
+
+.sidebar-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 6px;
+}
+
+.sidebar-value {
+    font-family: var(--serif);
+    font-size: 0.88rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.sidebar-value a {
+    display: block;
     color: #333;
     text-decoration: none;
-    padding: 8px 12px;
+    transition: color 0.2s, transform 0.2s;
+}
+.sidebar-value a:hover { color: var(--font-color-0); }
+
+.sidebar-tags a {
+    display: inline-block;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-size: 0.82rem;
+    color: #555;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.2s;
+    padding: 1px 8px;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.sidebar-tags a:hover {
+    border-color: var(--font-color-0);
+    color: var(--font-color-0);
+    background: var(--red-soft);
 }
 
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke: currentColor;
-}
-
-/* Responsive Academic Layout */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.5rem;
-    }
-    
-    .pub-item {
-        padding: 18px 0;
-    }
-}
-
-/* Archive */
-.archive-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
+.post-main-title {
+    font-family: var(--serif);
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    display: block;
-}
-.archive li {
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-}
-.archive li span {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    color: #999;
+    color: #000;
+    margin: 0 0 1.6em 0;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    border-bottom: 2px solid #000;
+    padding-bottom: 16px;
+    position: relative;
 }
 
-/* ── Page (About, etc.) ── */
+.post-main-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 72px;
+    height: 2px;
+    background: var(--font-color-0);
+}
+
+/* Collapse to single column on small screens */
+@media (max-width: 900px) {
+    article.post-main {
+        grid-template-columns: 1fr;
+    }
+    .post-sidebar {
+        position: static;
+        border-left: none;
+        border-top: 1px solid #ddd;
+        padding-left: 0;
+        padding-top: 24px;
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px 40px;
+    }
+    .sidebar-block { margin-bottom: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   通用页面（About 等）
+   ═══════════════════════════════════════════════════════════════════ */
+
 .page-body {
-    max-width: 680px;
+    width: 100%;
+    max-width: min(820px, 100%);
     margin: 0 auto;
     padding: 20px 0 60px;
     grid-column: 1 / -1; /* 跨越整个 grid 父容器 */
 }
 
 .page-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", "SimSun", serif;
+    font-family: var(--serif);
     font-size: 2.4rem;
     font-weight: 900;
     color: #000;
@@ -2066,7 +795,7 @@ article.post-main {
 
 /* 页面中的 h3 样式优化 */
 .page-content.post-md h3 {
-    font-family: Arial, sans-serif;
+    font-family: var(--sans);
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -2097,10 +826,14 @@ article.post-main {
     padding: clamp(28px, 5vw, 56px);
     border: 1px solid #e2e2e2;
     border-radius: 8px;
-    background:
-        linear-gradient(180deg, #fff 0%, #fff 70%, #fafafa 100%);
-    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.08);
+    background: linear-gradient(180deg, #fff 0%, #fff 70%, #fafafa 100%);
+    box-shadow: var(--shadow-card);
     text-align: center;
+    transition: box-shadow 0.3s;
+}
+
+.about-card:hover {
+    box-shadow: var(--shadow-card-hover);
 }
 
 .about-card-avatar {
@@ -2120,7 +853,7 @@ article.post-main {
 }
 
 .about-card-kicker {
-    font-family: Arial, sans-serif;
+    font-family: var(--sans);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -2130,7 +863,7 @@ article.post-main {
 }
 
 .about-card h2 {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
+    font-family: var(--serif);
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.15;
     color: #000;
@@ -2171,7 +904,7 @@ article.post-main {
 }
 
 .about-card-tags span {
-    font-family: Arial, sans-serif;
+    font-family: var(--sans);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -2197,12 +930,12 @@ article.post-main {
     padding: 9px 16px;
     border: 1px solid #d8d8d8;
     border-radius: 4px;
-    font-family: Arial, sans-serif;
+    font-family: var(--sans);
     font-size: 0.82rem;
     font-weight: 700;
     color: #222;
     text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
 }
 
 .about-card-links a:hover {
@@ -2210,6 +943,7 @@ article.post-main {
     background: var(--font-color-0);
     color: #fff;
     text-decoration: none;
+    transform: translateY(-1px);
 }
 
 @media (max-width: 560px) {
@@ -2232,2572 +966,448 @@ article.post-main {
     }
 }
 
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   分页器
+   ═══════════════════════════════════════════════════════════════════ */
 
-.pub-header {
+.paginator {
+    margin-top: 50px;
     text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #000;
-    border-bottom: 1px solid #000;
-    padding-bottom: 8px;
-    margin: 0 0 20px 0;
-    letter-spacing: 0.1em;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-    padding: 20px 0;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #666;
-    line-height: 1.6;
-}
-
-.pub-date {
-    display: block;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: block;
-    color: #999;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
+    font-family: var(--sans);
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
+    gap: 8px;
 }
 
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.65rem;
-    color: #777;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    text-align: right;
-}
-
-.pub-link {
+.paginator a,
+.paginator span {
     display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Academic Responsive */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-}
-
-/* Responsive: single column on mobile */
-@media (max-width: 600px) {
-    .post-list {
-        grid-template-columns: 1fr;
-    }
-    .page-body {
-        padding: 10px 0 40px;
-    }
-    .page-title {
-        font-size: 1.8rem;
-    }
-    .page-content ul li {
-        flex-wrap: wrap;
-    }
-    .page-content ul li a {
-        word-break: break-all;
-    }
-}
-
-/* Academic Publications Style */
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.01em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.1rem;
-    color: #666;
-    font-style: italic;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px 15px;
     margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 120px 1fr 80px;
-    gap: 20px;
-    padding: 20px 0;
-    align-items: start;
-}
-
-.pub-meta {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #666;
-    line-height: 1.6;
-}
-
-.pub-date {
-    display: block;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: block;
-    font-size: 0.75rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    line-height: 1.4;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #555;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    display: flex;
-    justify-content: flex-end;
     align-items: center;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
+    justify-content: center;
     border: 1px solid #ddd;
     border-radius: 4px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke: currentColor;
-}
-
-/* Academic Style Responsive */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-title {
-        font-size: 2rem;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 100px 1fr;
-        gap: 15px;
-    }
-    
-    .pub-actions {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
-        padding-top: 10px;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    
-    .pub-meta {
-        display: flex;
-        gap: 15px;
-        align-items: baseline;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - Homepage
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 60px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.4rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #999;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 28px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr auto;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    text-align: right;
-    padding-top: 4px;
-}
-
-.pub-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 4px;
-}
-
-.pub-category {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--font-color-0);
-    background: #fff5f5;
-    padding: 2px 8px;
-    border: 1px solid #ffdada;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-    text-decoration: none;
-}
-
-.pub-tags {
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    margin-right: 10px;
-    letter-spacing: 0.02em;
-}
-
-.pub-tag::before {
-    content: "#";
-    color: #ccc;
-    margin-right: 2px;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    display: flex;
-    align-items: center;
-    padding-top: 4px;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     color: #333;
     text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke-width: 1.5;
-}
-
-/* Academic style responsive */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 40px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .pub-date {
-        display: inline;
-        margin-bottom: 0;
-    }
-    
-    .pub-actions {
-        padding-top: 0;
-    }
-    
-    .pub-item-title {
-        font-size: 1.1rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - Homepage
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 60px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: -0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-/* Year Section */
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #000;
-    margin: 0 0 25px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    letter-spacing: -0.01em;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* Publication Item */
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 25px;
-    padding: 25px 0;
-    align-items: start;
-}
-
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-}
-
-/* Meta Column */
-.pub-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.pub-date {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-category {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-/* Content Column */
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 0 0 12px 0;
-    line-height: 1.4;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.68rem;
-    color: #777;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 2px;
-    text-transform: lowercase;
-    letter-spacing: 0.02em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.92rem;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
-    font-style: italic;
-}
-
-/* Actions Column */
-.pub-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--font-color-0);
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: var(--font-color-0);
-    color: #fff;
+.paginator a:hover {
     border-color: var(--font-color-0);
+    color: var(--font-color-0);
+    background: var(--red-soft);
     text-decoration: none;
 }
 
-.pub-link svg {
-    flex-shrink: 0;
-}
-
-/* Responsive Academic Layout */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 40px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.6rem;
-    }
-    
-    .pub-year {
-        font-size: 1.2rem;
-    }
-    
-    .pub-entry {
-        padding: 20px 0;
-    }
-    
-    .pub-meta {
-        flex-direction: row;
-        gap: 15px;
-    }
-    
-    .pub-actions {
-        justify-content: flex-start;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - 学术期刊风格
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-    font-variant: small-caps;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-/* Year Section */
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 25px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Publication List */
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-/* Publication Entry */
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 25px;
-    padding: 25px 0;
-    align-items: start;
-}
-
-.pub-meta {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-date {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #D20000;
-    font-weight: 500;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    line-height: 1.5;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: #D20000;
-    border-bottom-color: #D20000;
-}
-
-.pub-tags {
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-    letter-spacing: 0.02em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.pub-actions {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
+.paginator .current {
     background: #000;
     color: #fff;
     border-color: #000;
-    text-decoration: none;
 }
 
-.pub-link svg {
-    stroke-width: 2;
-}
-
-/* Academic Header Override */
-.header-academic {
-    background: #fff;
-    border-bottom: 3px double #000;
-}
-
-.header-academic .logo {
-    font-variant: small-caps;
-    letter-spacing: 3px;
-}
-
-/* Responsive Academic */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 15px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 35px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 20px 0;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        display: inline;
-    }
-    
-    .pub-actions {
-        text-align: left;
-        padding-top: 5px;
-    }
-    
-    .pub-year {
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .pub-title {
-        font-size: 1.5rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1rem;
-    }
-    
-    .pub-abstract {
-        font-size: 0.85rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 120px 1fr 80px;
-    gap: 20px;
-    align-items: start;
-}
-
-.pub-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.pub-date {
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-category {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #000;
-    margin: 0;
-    line-height: 1.4;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-    color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.92rem;
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #333;
-    text-decoration: none;
-    padding: 8px 14px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke: currentColor;
-}
-
-/* Academic Style Responsive */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .pub-meta {
-        flex-direction: row;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-actions {
-        justify-content: flex-start;
-    }
-    
-    .pub-header {
-        margin-bottom: 35px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-    
-    .pub-year {
-        font-size: 1.1rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - 学术风格
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", "Songti SC", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: -0.01em;
-}
-
-.pub-subtitle {
-    font-family: Arial, sans-serif;
-    font-size: 0.95rem;
-    color: #666;
-    margin: 0;
-    font-style: italic;
-}
-
-/* Year Section */
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 25px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Publication List */
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-/* Publication Entry */
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 25px;
-    padding: 25px 0;
-    align-items: start;
-}
-
-.pub-entry:hover {
-    background: #fafafa;
-}
-
-/* Meta Column */
-.pub-meta {
-    text-align: right;
-    padding-right: 15px;
-    border-right: 1px solid #e0e0e0;
-}
-
-.pub-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-category {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-/* Content Column */
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-    color: var(--font-color-0);
-}
-
-.pub-tags {
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", serif;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #555;
-    margin: 0;
-}
-
-/* Actions Column */
-.pub-actions {
-    text-align: right;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    stroke: currentColor;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 20px 0;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        padding-right: 0;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        padding-bottom: 10px;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date,
-    .pub-category {
-        display: inline;
-        margin-bottom: 0;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-title {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.4rem;
-    }
-    
-    .pub-year {
-        font-size: 1.2rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - 学术风格
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-    padding: 20px 0;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: grid;
-    grid-template-columns: 140px 1fr 80px;
-    gap: 0 25px;
-    align-items: start;
-}
-
-.pub-meta {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    color: #666;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    line-height: 1.4;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-.pub-item-title a:hover {
-    border-bottom-color: var(--font-color-0);
-    color: var(--font-color-0);
-}
-
-.pub-tags {
-    margin-bottom: 10px;
-}
-
-.pub-tag {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #777;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    margin-right: 6px;
-    border-radius: 2px;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #555;
-    margin: 0;
-    text-align: left;
-}
-
-.pub-actions {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--font-color-0);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: var(--font-color-0);
-    color: #fff;
-    border-color: var(--font-color-0);
-    text-decoration: none;
-}
-
-.pub-link svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Academic Responsive */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-header {
-        margin-bottom: 30px;
-        padding-bottom: 20px;
-    }
-    
-    .pub-title {
-        font-size: 1.8rem;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 10px 0;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        display: flex;
-        gap: 15px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        margin-top: 0;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-item {
-        padding: 15px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .pub-title {
-        font-size: 1.5rem;
-    }
-    
-    .pub-item-title {
-        font-size: 1.05rem;
-    }
-    
-    .pub-abstract {
-        font-size: 0.85rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - 学术期刊风格
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-    font-variant: small-caps;
-}
-
-.pub-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-/* Year Section */
-.pub-year-section {
-    margin-bottom: 50px;
-}
-
-.pub-year {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 25px 0;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Publication List */
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-/* Publication Entry */
-.pub-entry {
-    display: grid;
-    grid-template-columns: 100px 1fr 80px;
-    gap: 25px;
-    padding: 25px 0;
-    align-items: start;
-}
-
-.pub-meta {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-date {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: block;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-content {
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 400;
-    line-height: 1.5;
-    margin: 0 0 10px 0;
-}
-
-.pub-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #666;
-    background: #f5f5f5;
-    padding: 3px 8px;
-    border-radius: 2px;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
-    font-style: italic;
-}
-
-.pub-actions {
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #333;
-    text-decoration: none;
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    transition: transform 0.2s;
-}
-
-.pub-link:hover svg {
-    transform: translateX(2px);
-}
-
-/* Responsive Academic Style */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 4vw 40px;
-    }
-    
-    .pub-title {
-        font-size: 1.6rem;
-    }
-    
-    .pub-entry {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 20px 0;
-    }
-    
-    .pub-meta {
-        text-align: left;
-        display: flex;
-        gap: 15px;
-        align-items: baseline;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        display: inline;
-    }
-    
-    .pub-actions {
-        text-align: left;
-    }
-    
-    .pub-year {
-        font-size: 1.2rem;
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   Academic Publications Style - 学术风格
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.academic-publications {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.pub-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
-}
-
-.pub-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 2.5rem;
-    font-weight: 400;
-    color: #000;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.02em;
-}
-
-.pub-subtitle {
-    font-family: Arial, sans-serif;
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.pub-year-section {
-    margin-bottom: 40px;
-}
-
-.pub-year {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #000;
-    margin: 0 0 20px 0;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-.pub-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.pub-item {
-    margin-bottom: 0;
-    border-bottom: 1px solid #eee;
-}
-
-.pub-item:last-child {
-    border-bottom: none;
-}
-
-.pub-entry {
-    display: flex;
-    gap: 20px;
-    padding: 24px 0;
-    align-items: flex-start;
-}
-
-.pub-meta {
-    flex-shrink: 0;
-    width: 120px;
-    text-align: right;
-    padding-top: 2px;
-}
-
-.pub-date {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-}
-
-.pub-category {
-    display: block;
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.pub-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #000;
-    margin: 0 0 10px 0;
-    line-height: 1.4;
-}
-
-.pub-item-title a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s, color 0.2s;
-}
-
-.pub-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-}
-
-.pub-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
-}
-
-.pub-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    color: #666;
-    background: #f5f5f5;
-    padding: 2px 8px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
-
-.pub-abstract {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "思源宋体", serif;
-    font-size: 0.92rem;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
-}
-
-.pub-actions {
-    flex-shrink: 0;
-    padding-top: 2px;
-}
-
-.pub-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #333;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    transition: all 0.2s;
-}
-
-.pub-link:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-    text-decoration: none;
-}
-
-.pub-link svg {
-    transition: stroke 0.2s;
-}
-
-/* Academic Responsive */
-@media (max-width: 768px) {
-    .academic-publications {
-        padding: 10px 0 40px;
-    }
-    
-    .pub-title {
-        font-size: 2rem;
-    }
-    
-    .pub-entry {
-        flex-direction: column;
-        gap: 12px;
-        padding: 20px 0;
-    }
-    
-    .pub-meta {
-        width: auto;
-        text-align: left;
-        display: flex;
-        gap: 12px;
-        align-items: center;
-    }
-    
-    .pub-date {
-        margin-bottom: 0;
-    }
-    
-    .pub-category {
-        border-left: 1px solid #ddd;
-        padding-left: 12px;
-    }
-    
-    .pub-item-title {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .pub-title {
-        font-size: 1.6rem;
-    }
-    
-    .pub-year {
-        font-size: 1.2rem;
-    }
-    
-    .pub-entry {
-        padding: 16px 0;
-    }
-}
-
-/* ── Card Grid Index Layout ── */
-.card-index {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 0 60px;
-}
-
-.card-index-header {
-    text-align: center;
-    margin-bottom: 48px;
-    padding-bottom: 28px;
-    border-bottom: 2px solid #000;
-}
-
-.card-index-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #000;
-    margin: 0 0 10px 0;
-    letter-spacing: -0.02em;
-}
-
-.card-index-subtitle {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1rem;
-    color: #666;
-    font-style: italic;
-    margin: 0;
-}
-
-.card-year-section {
-    margin-bottom: 48px;
-}
-
-.card-year-label {
-    font-family: Arial, sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 8px;
-    margin: 0 0 24px 0;
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.card-item {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 20px;
-    background: #fff;
-    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-}
-
-.card-item:hover {
-    border-color: #aaa;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
-    transform: translateY(-2px);
-}
-
-.card-item-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.card-item-date {
-    font-family: Arial, sans-serif;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #999;
-}
-
-.card-item-category {
-    font-family: Arial, sans-serif;
-    font-size: 0.68rem;
-    color: var(--font-color-0);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-weight: 600;
-}
-
-.card-item-title {
-    font-family: Georgia, "Times New Roman", "Source Han Serif SC", "Source Han Serif CN", "思源宋体", serif;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.45;
-    margin: 0 0 10px 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.card-item-title a {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-}
-
-.card-item-title a:hover {
-    color: var(--font-color-0);
-    border-bottom-color: var(--font-color-0);
-    text-decoration: none;
-}
-
-.card-item-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.card-item-tag {
-    font-family: Arial, sans-serif;
-    font-size: 0.65rem;
-    color: #777;
-    background: #f5f5f5;
-    padding: 2px 7px;
-    border-radius: 2px;
-    text-transform: lowercase;
-    letter-spacing: 0.02em;
-}
-
-.card-item-excerpt {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.875rem;
-    color: #666;
-    line-height: 1.6;
-    margin: 0 0 14px 0;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.card-item-read-more {
-    font-family: Arial, sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #333;
-    text-decoration: none;
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px solid #eee;
-    transition: color 0.2s;
-}
-
-.card-item-read-more:hover {
-    color: var(--font-color-0);
-    text-decoration: none;
-}
-
-/* Responsive Card Grid */
-@media (max-width: 1200px) {
-    .card-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 860px) {
-    .card-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 560px) {
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .card-index-title {
-        font-size: 1.6rem;
-    }
-}
-
-/* ── Large Screen Fluid Layout ── */
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-.paper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-}
-
-.paper-main {
-    flex: 1 0 auto;
-    max-width: none;
-    padding-left: clamp(20px, 4vw, 96px);
-    padding-right: clamp(20px, 4vw, 96px);
-    padding-bottom: clamp(48px, 5vw, 96px);
-}
+/* ═══════════════════════════════════════════════════════════════════
+   页脚
+   ═══════════════════════════════════════════════════════════════════ */
 
-.header,
-.post-header,
 .footer {
+    border-top: 1px solid #333;
+    margin-top: 80px;
+    background: #000;
     width: 100%;
     max-width: none;
-}
-
-.header,
-.header.header-scrolled,
-.post-header,
-.post-header.header-scrolled {
-    padding-left: clamp(20px, 4vw, 96px);
-    padding-right: clamp(20px, 4vw, 96px);
-}
-
-.footer {
     flex-shrink: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 50px clamp(20px, 4vw, 96px) 40px;
     max-width: min(1800px, 100%);
-    padding-left: clamp(20px, 4vw, 96px);
-    padding-right: clamp(20px, 4vw, 96px);
+    margin: 0 auto;
+}
+
+.footer-section {
+    color: #aaa;
+}
+
+.footer-section:first-child {
+    padding-right: 40px;
+}
+
+.footer-title {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.footer-institution {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+.footer-dept {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: #aaa;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--font-color-0);
+    text-decoration: none;
+    transform: translateX(3px);
+}
+
+.footer-links i {
+    font-size: 1rem;
+    color: #777;
 }
 
 .footer-bottom {
-    padding-left: clamp(20px, 4vw, 96px);
-    padding-right: clamp(20px, 4vw, 96px);
+    border-top: 1px solid #333;
+    padding: 20px clamp(20px, 4vw, 96px);
+    background: #111;
 }
 
-.card-index {
+.footer-legal {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.footer-legal a {
+    color: #aaa;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.footer-legal a:hover {
+    color: var(--font-color-0);
+    border-bottom-color: var(--font-color-0);
+}
+
+.footer-divider {
+    margin: 0 10px;
+    color: #555;
+}
+
+.footer-tech {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+}
+
+.footer-tech a {
+    color: #888;
+    text-decoration: none;
+}
+
+.footer-tech a:hover {
+    color: var(--font-color-0);
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 35px 16px 30px;
+    }
+
+    .footer-section:first-child {
+        grid-column: 1 / -1;
+        padding-right: 0;
+    }
+
+    .footer-bottom {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   搜索
+   ═══════════════════════════════════════════════════════════════════ */
+
+.search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    padding: 10px;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.search-btn:hover {
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(20, 20, 20, 0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: max(100px, 12vh) 0 0;
+    min-height: 100dvh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-container {
     width: 100%;
-    max-width: min(1800px, 100%);
+    max-width: 700px;
+    background: #fff;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+    margin: 0 20px;
+    padding: 20px;
+    transform: translateY(-12px) scale(0.98);
+    transition: transform 0.3s var(--ease-out);
 }
 
-.card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-    gap: clamp(20px, 1.6vw, 32px);
+.search-overlay.active .search-container {
+    transform: translateY(0) scale(1);
 }
 
-article.post-main {
-    width: 100%;
-    max-width: min(1320px, 100%);
-    gap: 0 clamp(40px, 4vw, 96px);
+.search-header {
+    margin-bottom: 20px;
 }
 
-.post-article-body {
-    max-width: 900px;
+.search-input-wrap {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
 }
 
-.page-body {
-    width: 100%;
-    max-width: min(820px, 100%);
+.search-icon-input {
+    margin-right: 10px;
+    color: #666;
 }
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    font-family: inherit;
+    background: transparent;
+    min-width: 0;
+}
+
+.search-kbd {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #999;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    background: transparent;
+    min-width: 44px;
+    min-height: 44px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.search-kbd:hover {
+    border-color: #999;
+    color: #333;
+}
+
+.search-results {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search-result-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-result-item {
+    padding: 15px 12px;
+    margin: 0 -12px;
+    border-radius: 6px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.15s;
+}
+
+.search-result-item:hover {
+    background: #fafafa;
+}
+
+.search-result-item a {
+    display: block;
+    text-decoration: none;
+}
+
+.search-result-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.search-result-item:hover .search-result-title {
+    color: var(--font-color-0);
+}
+
+.search-result-snippet {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.search-highlight {
+    background: #ffecb3;
+    padding: 0 2px;
+}
+
+.search-empty {
+    text-align: center;
+    color: #999;
+    padding: 30px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   浮动组件：阅读进度条 & 返回顶部
+   ═══════════════════════════════════════════════════════════════════ */
+
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 1100;
+    background: var(--font-color-0);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    pointer-events: none;
+}
+
+.back-to-top {
+    position: fixed;
+    right: max(24px, env(safe-area-inset-right));
+    bottom: max(24px, env(safe-area-inset-bottom));
+    z-index: 1500;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s, visibility 0.25s, transform 0.25s var(--ease-out),
+        background 0.2s;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--font-color-0);
+}
+
+.back-to-top svg {
+    transition: transform 0.2s;
+}
+
+.back-to-top:hover svg {
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   入场动画（由 main.js 的 IntersectionObserver 加 .reveal-in 触发）
+   ═══════════════════════════════════════════════════════════════════ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.reveal-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   宽屏适配
+   ═══════════════════════════════════════════════════════════════════ */
 
 @media (min-width: 1800px) {
     body {
@@ -4812,8 +1422,7 @@ article.post-main {
         font-size: 2.5rem;
     }
 
-    .card-index-title,
-    .pub-title {
+    .card-index-title {
         font-size: 2.6rem;
     }
 
@@ -4854,39 +1463,9 @@ article.post-main {
     }
 }
 
-/* Mobile layout and touch targets */
-.paginator {
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.paginator a,
-.paginator span {
-    display: inline-flex;
-    min-width: 44px;
-    min-height: 44px;
-    margin: 0;
-    padding: 8px 12px;
-    align-items: center;
-    justify-content: center;
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid var(--font-color-0);
-    outline-offset: 3px;
-}
-
-.search-overlay {
-    min-height: 100dvh;
-}
-
-.search-kbd {
-    min-width: 44px;
-    min-height: 44px;
-    background: transparent;
-}
+/* ═══════════════════════════════════════════════════════════════════
+   移动端
+   ═══════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
     body {
@@ -4989,7 +1568,6 @@ input:focus-visible {
     }
 
     .search-input {
-        min-width: 0;
         font-size: 16px;
     }
 
@@ -4997,10 +1575,31 @@ input:focus-visible {
         max-height: calc(100dvh - 130px);
     }
 
-    .footer-content,
-    .footer-bottom {
-        padding-left: 16px;
-        padding-right: 16px;
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-body {
+        padding: 10px 0 40px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .page-content ul li {
+        flex-wrap: wrap;
+    }
+
+    .page-content ul li a {
+        word-break: break-all;
+    }
+
+    .card-index-title {
+        font-size: 1.6rem;
     }
 }
 
@@ -5015,7 +1614,15 @@ input:focus-visible {
     }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   动效偏好：用户要求减少动效时全部关闭
+   ═══════════════════════════════════════════════════════════════════ */
+
 @media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     *,
     *::before,
     *::after {
@@ -5023,5 +1630,10 @@ input:focus-visible {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
     }
 }
