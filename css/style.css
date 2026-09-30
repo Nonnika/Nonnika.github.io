@@ -1107,10 +1107,10 @@ article.post-main {
 
 .footer-legal {
     font-family: var(--sans);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #888;
     text-align: center;
-    margin-bottom: 6px;
+    line-height: 2;
 }
 
 .footer-legal a {
@@ -1130,20 +1130,14 @@ article.post-main {
     color: #555;
 }
 
-.footer-tech {
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    color: #666;
-    text-align: center;
-}
-
-.footer-tech a {
-    color: #888;
-    text-decoration: none;
-}
-
-.footer-tech a:hover {
-    color: var(--font-color-0);
+.footer-logo {
+    display: block;
+    height: 28px;
+    width: auto;
+    max-width: 60vw;
+    object-fit: contain;
+    margin: 0 auto 14px;
+    opacity: 0.9;
 }
 
 /* Responsive Footer */
@@ -1162,6 +1156,20 @@ article.post-main {
     .footer-bottom {
         padding-left: 16px;
         padding-right: 16px;
+    }
+
+    /* 分段居中换行，避开右下角悬浮的回到顶部按钮 */
+    .footer-legal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 14px;
+        row-gap: 2px;
+        padding: 0 24px;
+    }
+
+    .footer-legal .footer-divider {
+        display: none;
     }
 }
 
